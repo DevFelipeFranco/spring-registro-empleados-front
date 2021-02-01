@@ -2,17 +2,20 @@
     <div class="forms-container">
         <div class="signin-signup">
             <form [formGroup]="registroUsuarioForm" (ngSubmit)="registrarUsuario()" class="sign-up-form" autocomplete="off">
-                <h2 class="title">Sign up</h2>
+                <h2 class="title">Registrar Usuario</h2>
                 <mat-form-field appearance="outline">
                     <mat-label>Usuario</mat-label>
                     <input matInput formControlName="usuario" placeholder="Usuario">
                     <mat-icon matPrefix class="fas fa-user"></mat-icon>
+                    <mat-error *ngIf="checkError('usuario', 'required')">El <strong>Usuario</strong> es requerido</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" placeholder="Email">
                     <mat-icon matPrefix class="fas fa-envelope"></mat-icon>
+                    <mat-error *ngIf="checkError('email', 'required')">El <strong>Email</strong> es requerido</mat-error>
+                    <mat-error *ngIf="checkError('email', 'email')">No es un formato valido para un email</mat-error>
                 </mat-form-field>
 
 
@@ -20,10 +23,11 @@
                     <mat-label>Clave</mat-label>
                     <input matInput formControlName="clave" type="password" placeholder="Clave">
                     <mat-icon matPrefix class="fas fa-lock"></mat-icon>
+                    <mat-error *ngIf="checkError('clave', 'required')">La <strong>Clave</strong> es requerida</mat-error>
                 </mat-form-field>
 
 
-                <input type="submit" class="btn" value="Sign up" />
+                <button mat-flat-button color="primary" type="submit" [disabled]="registroUsuarioForm.invalid">Sign up</button>
                 <p class="social-text">Or Sign up with social platforms</p>
                 <div class="social-media">
                     <a href="#" class="social-icon">

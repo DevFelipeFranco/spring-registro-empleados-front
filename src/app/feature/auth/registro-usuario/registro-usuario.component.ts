@@ -28,4 +28,8 @@ export class RegistroUsuarioComponent implements OnInit {
   registrarUsuario(): void {
     console.log('Saved:', this.registroUsuarioForm.value);
   }
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.registroUsuarioForm.controls[controlName].hasError(errorName);
+  }
 }
