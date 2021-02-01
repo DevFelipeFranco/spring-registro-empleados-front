@@ -1,24 +1,24 @@
 <div class="container sign-up-mode">
     <div class="forms-container">
         <div class="signin-signup">
-            <form action="#" class="sign-up-form" autocomplete="off">
+            <form [formGroup]="registroUsuarioForm" (ngSubmit)="registrarUsuario()" class="sign-up-form" autocomplete="off">
                 <h2 class="title">Sign up</h2>
                 <mat-form-field appearance="outline">
                     <mat-label>Usuario</mat-label>
-                    <input matInput placeholder="Usuario">
+                    <input matInput formControlName="usuario" placeholder="Usuario">
                     <mat-icon matPrefix class="fas fa-user"></mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="Email">
+                    <input matInput formControlName="email" placeholder="Email">
                     <mat-icon matPrefix class="fas fa-envelope"></mat-icon>
                 </mat-form-field>
 
 
                 <mat-form-field appearance="outline">
                     <mat-label>Clave</mat-label>
-                    <input matInput type="password" placeholder="Clave">
+                    <input matInput formControlName="clave" type="password" placeholder="Clave">
                     <mat-icon matPrefix class="fas fa-lock"></mat-icon>
                 </mat-form-field>
 
