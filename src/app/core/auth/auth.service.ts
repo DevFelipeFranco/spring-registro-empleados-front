@@ -28,4 +28,8 @@ export class AuthService {
         return true;
       }));
   }
+
+  getJwtToken(): any {
+    return this.localStorage.retrieve('authenticationToken');
+  }
 }
