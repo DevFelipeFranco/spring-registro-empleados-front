@@ -15,3 +15,15 @@ export interface Usuario {
     fechaCreacion: string;
     roles: [Rol];
 }
+export interface Login {
+    clave: string;
+    email?: string;
+    usuario: string;
+}
+
+export interface LoginResponse {
+    tokenAutenticacion: string;
+    refreshToken: string;
+    expiresAt: Date;
+    usuario: Usuario;
+}

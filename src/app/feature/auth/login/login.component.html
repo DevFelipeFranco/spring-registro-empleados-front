@@ -1,17 +1,23 @@
 <div class="container sign-in-mode">
     <div class="forms-container">
         <div class="signin-signup">
-            <form action="#" class="sign-in-form">
+            <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off" class="sign-in-form">
                 <h2 class="title">Sign in</h2>
-                <div class="input-field">
-                    <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Username" />
-                </div>
-                <div class="input-field">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Password" />
-                </div>
-                <input type="submit" value="Login" class="btn solid" />
+                <mat-form-field appearance="outline">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="usuario" placeholder="Usuario">
+                    <mat-icon matPrefix class="fas fa-user"></mat-icon>
+                    <mat-error *ngIf="checkError('usuario', 'required')">El <strong>Usuario</strong> es requerido</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Clave</mat-label>
+                    <input matInput formControlName="clave" type="password" placeholder="Clave">
+                    <mat-icon matPrefix class="fas fa-lock"></mat-icon>
+                    <mat-error *ngIf="checkError('clave', 'required')">La <strong>Clave</strong> es requerida</mat-error>
+                </mat-form-field>
+                <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
                 <p class="social-text">Or Sign in with social platforms</p>
                 <div class="social-media">
                     <a href="#" class="social-icon">
