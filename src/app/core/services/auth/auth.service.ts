@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Login, LoginResponse, RegistarUsuario, Usuario } from '../models/usuario.model';
+import { Login, LoginResponse, RegistarUsuario, Usuario } from '../../models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
