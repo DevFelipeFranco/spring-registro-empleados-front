@@ -1,1 +1,25 @@
-<app-lista-persona *ngIf="listaPersonas" [personas]="listaPersonas" (editarPersona)="editarPersona($event)"></app-lista-persona>
+<div>
+    <a [routerLink]="['/owner/create']" mat-button color="primary">
+        <mat-icon fontSet="fas" fontIcon="fa-user-plus"></mat-icon>
+        Create Owner
+    </a>
+
+</div>
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Lista de Empleados</h4>
+                        <p class="card-category">Sub Titulo</p>
+                    </div>
+                    <div class="card-body">
+                        <app-lista-persona *ngIf="listaPersonas" [personas]="listaPersonas" (editarPersona)="editarPersona($event)"></app-lista-persona>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

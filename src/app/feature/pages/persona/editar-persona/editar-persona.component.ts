@@ -17,8 +17,8 @@ export class EditarPersonaComponent implements OnInit {
   tipoDocumentos: TipoDocumento[];
 
   constructor(private readonly fb: FormBuilder,
-              private readonly persoaService: PersonaService,
-              private readonly router: Router) {
+    private readonly persoaService: PersonaService,
+    private readonly router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.persona = navigation?.extras?.state?.value;
 
@@ -41,7 +41,7 @@ export class EditarPersonaComponent implements OnInit {
       fechaNacimiento: ['', Validators.required],
       direccion: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      edad: [{value: '', disabled: true}, Validators.required]
+      edad: [{ value: '', disabled: true }, Validators.required]
     });
   }
 
@@ -50,7 +50,21 @@ export class EditarPersonaComponent implements OnInit {
   }
 
   onEditarPersona(): void {
-
+    this.persona = {
+      idPersona: this.persona.idPersona,
+      tipoDocumento: this.personaFormulario.get('tipoDocumento').value,
+      identificacion: this.personaFormulario.get('identificacion').value,
+      primerNombre: this.personaFormulario.get('primerNombre').value,
+      segundoNombre: this.personaFormulario.get('segundoNombre').value,
+      primerApellido: this.personaFormulario.get('primerApellido').value,
+      segundoApellido: this.personaFormulario.get('segundoApellido').value,
+      fechaNacimiento: new Date(this.personaFormulario.get('fechaNacimiento').value),
+      direccion: this.personaFormulario.get('direccion').value,
+      email: this.personaFormulario.get('email').value,
+      edad: this.personaFormulario.get('edad').value,
+      usuario: this.persona.usuario
+    }
+    this.persoaService.actualizarPersona(this.persona).subscribe(personaActualizada => console.log(personaActualizada));
   }
 
   compararTipoDocumento(td1: TipoDocumento, td2: TipoDocumento): boolean {

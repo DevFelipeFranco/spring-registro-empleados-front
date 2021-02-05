@@ -18,4 +18,8 @@ export class PersonaService {
   tipoDocumentos(): Observable<TipoDocumento[]> {
     return this.httpClient.get<TipoDocumento[]>('https://localhost:9003/api/persona/tipoDocumento');
   }
+
+  actualizarPersona(persona: Persona): Observable<Persona> {
+    return this.httpClient.put<Persona>('https://localhost:9003/api/persona', persona);
+  }
 }
