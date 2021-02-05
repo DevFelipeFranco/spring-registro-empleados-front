@@ -1,1 +1,114 @@
-<p>editar-persona works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-rose">
+                        <div class="card-icon">
+                            <i class="material-icons">perm_identity</i>
+                        </div>
+                        <h4 class="card-title">
+                            Editar Persona
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="personaFormulario" (ngSubmit)="onEditarPersona()">
+                            <table class="example-full-width" cellspacing="0">
+                                <!-- ################## ROW #1 ##################-->
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Tipo Documento</mat-label>
+                                            <mat-select [compareWith]="compararTipoDocumento" formControlName="tipoDocumento">
+                                                <mat-option *ngFor="let tipoDocumento of tipoDocumentos" [value]="tipoDocumento">
+                                                    {{tipoDocumento.tipoDocumento}} - {{tipoDocumento.descripcion}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Identificación</mat-label>
+                                            <input matInput type="text" formControlName="identificacion" id="identificacion">
+                                            <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+
+                                <!-- ################## ROW #2 ##################-->
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Primer Nombre</mat-label>
+                                            <input matInput type="text" formControlName="primerNombre" id="primerNombre">
+                                            <mat-error *ngIf="hasError('primerNombre', 'required')">El Primer Nombre es requerido</mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Segundo Nombre</mat-label>
+                                            <input matInput type="text" formControlName="segundoNombre" id="segundoNombre">
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Primer Apellido</mat-label>
+                                            <input matInput type="text" formControlName="primerApellido" id="primerApellido">
+                                            <mat-error *ngIf="hasError('primerApellido', 'required')">El Primer Apellido es requerido</mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Segundo Apellido</mat-label>
+                                            <input matInput type="text" formControlName="segundoApellido" id="segundoApellido">
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+
+                                <!-- ################## ROW #3 ##################-->
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" placeholder="Fecha de Nacimiento" id="dateOfBirth" readonly (click)="picker.open()">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                            <mat-error *ngIf="hasError('fechaNacimiento', 'required')">La Fecha de Nacimiento es requerida</mat-error>
+                                        </mat-form-field>
+
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Direccion</mat-label>
+                                            <input matInput type="text" formControlName="direccion" id="direccion">
+                                            <mat-error *ngIf="hasError('direccion', 'required')">La Dirección es requerida</mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Email</mat-label>
+                                            <input matInput type="text" formControlName="email" id="email">
+                                            <mat-error *ngIf="hasError('email', 'required')">El Email es requerido</mat-error>
+                                            <mat-error *ngIf="hasError('email', 'email')">El Email no tiene un formato valido</mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Edad</mat-label>
+                                            <input matInput formControlName="edad" id="edad">
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <mat-card-actions>
+                                <button mat-raised-button color="primary" [disabled]="false">Create</button>
+                                <button type="button" mat-raised-button color="warn">Cancel</button>
+                            </mat-card-actions>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
