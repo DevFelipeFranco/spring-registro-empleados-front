@@ -10,15 +10,18 @@ import { Login, LoginResponse, RegistarUsuario, Usuario } from '../../models/usu
 })
 export class AuthService {
 
+  private API_URL = 'https://localhost:9003/api/auth';
+  private API_URL_PROD = 'https://spring-registro-empleados-back.herokuapp.com/api/auth';
+
   constructor(private readonly httpClient: HttpClient,
               private readonly localStorage: LocalStorageService) { }
 
   registrarUsuario(usuario: RegistarUsuario): Observable<any> {
-    return this.httpClient.post('https://localhost:9003/api/auth/signup', usuario, { responseType: 'text' });
+    return this.httpClient.post(this.API_URL + '/signup', usuario, { responseType: 'text' });
   }
 
   login(login: Login): Observable<boolean> {
-    return this.httpClient.post<LoginResponse>('https://localhost:9003/api/auth/login', login)
+    return this.httpClient.post<LoginResponse>(this.API_URL + '/login', login)
       .pipe(map((data: LoginResponse) => {
         this.localStorage.store('authenticationToken', data.tokenAutenticacion);
         this.localStorage.store('username', data.usuario.usuario);
@@ -31,5 +34,9 @@ export class AuthService {
 
   getJwtToken(): any {
     return this.localStorage.retrieve('authenticationToken');
+  }
+
+  getJwtUsername(): any {
+    return this.localStorage.retrieve('username');
   }
 }

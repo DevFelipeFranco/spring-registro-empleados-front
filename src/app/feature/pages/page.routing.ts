@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { PersonaComponent } from './persona/persona.component';
-import { EditarPersonaComponent } from './persona/editar-persona/editar-persona.component';
+import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/editar-crear-persona.component';
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'perfil', component: PerfilComponent },
       { path: 'persona', component: PersonaComponent },
-      { path: 'persona/editar-persona', component: EditarPersonaComponent },
+      { path: 'persona/editar-crear-persona', component: EditarCrearPersonaComponent },
     ]
   }
 ];

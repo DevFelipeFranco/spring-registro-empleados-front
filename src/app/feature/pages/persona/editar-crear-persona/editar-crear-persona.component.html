@@ -8,11 +8,11 @@
                             <i class="material-icons">perm_identity</i>
                         </div>
                         <h4 class="card-title">
-                            Editar Persona
+                            {{titulo}}
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form [formGroup]="personaFormulario" (ngSubmit)="onEditarPersona()">
+                        <form [formGroup]="personaFormulario">
                             <table class="example-full-width" cellspacing="0">
                                 <!-- ################## ROW #1 ##################-->
                                 <tr>
@@ -101,8 +101,12 @@
                             </table>
 
                             <div class="action-containt">
-                                <button mat-raised-button color="primary" [disabled]="personaFormulario.invalid">Create</button>
-                                <button type="button" mat-raised-button color="warn">Cancel</button>
+                                <button mat-raised-button color="primary" (click)="onCrearPersona()" *ngIf="crear; else editar" [disabled]="personaFormulario.invalid">Crear</button>
+                                <ng-template #editar>
+                                    <button mat-raised-button color="primary" (click)="onEditarPersona()" [disabled]="personaFormulario.invalid">Editar</button>
+
+                                </ng-template>
+                                <button type="button" mat-raised-button routerLink='/dashboard/persona' color="warn">Cancelar</button>
                             </div>
 
                         </form>

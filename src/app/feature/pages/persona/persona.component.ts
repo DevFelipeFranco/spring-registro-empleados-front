@@ -34,6 +34,6 @@ export class PersonaComponent implements OnInit {
   editarPersona(persona: Persona): void {
     console.log('Se envio la persona del componente hijo al padre', persona);
     this.navigationExtras.state.value = persona;
-    this.router.navigate(['/dashboard/persona/editar-persona'], this.navigationExtras);
+    this.router.navigate(['/dashboard/persona/editar-crear-persona'], this.navigationExtras);
   }
 }

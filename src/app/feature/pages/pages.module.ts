@@ -27,10 +27,12 @@ import { PersonaComponent } from './persona/persona.component';
 import { ListaPersonaComponent } from './persona/lista-persona/lista-persona.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from 'src/app/core/interceptor/token-interceptor';
-import { EditarPersonaComponent } from './persona/editar-persona/editar-persona.component';
+import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/editar-crear-persona.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  declarations: [PagesComponent, DashboardComponent, PerfilComponent, PersonaComponent, ListaPersonaComponent, EditarPersonaComponent],
+  declarations: [PagesComponent, DashboardComponent, PerfilComponent, PersonaComponent, ListaPersonaComponent, EditarCrearPersonaComponent],
   imports: [
     CommonModule,
     SharedModule,
