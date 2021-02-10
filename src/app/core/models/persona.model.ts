@@ -1,5 +1,6 @@
 import { Usuario } from './usuario.model';
 import { TipoDocumento } from './tipoDocumento.model';
+import { Genero } from './genero.model';
 
 export interface Persona {
     idPersona?: number;
@@ -14,4 +15,5 @@ export interface Persona {
     segundoNombre: string;
     tipoDocumento: TipoDocumento;
     usuario: Usuario;
+    genero: Genero;
 }

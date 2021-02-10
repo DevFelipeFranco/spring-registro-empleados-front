@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Persona } from '../../models/persona.model';
 import { Observable } from 'rxjs';
 import { TipoDocumento } from '../../models/tipoDocumento.model';
+import { Genero } from '../../models/genero.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class PersonaService {
     return this.httpClient.get<TipoDocumento[]>(this.API_URL + '/tipoDocumento');
   }
 
+  generos(): Observable<Genero[]> {
+    return this.httpClient.get<Genero[]>(this.API_URL + '/genero');
+  }
+
   actualizarPersona(persona: Persona): Observable<Persona> {
     return this.httpClient.put<Persona>(this.API_URL, persona);
   }
@@ -30,7 +35,7 @@ export class PersonaService {
     return this.httpClient.post<Persona>(this.API_URL, persona);
   }
 
-  eliminarPersona(idPersona: number): Observable<string> {
-    return this.httpClient.delete<string>(`${this.API_URL}/${idPersona}`);
+  eliminarPersona(idPersona: number): Observable<any> {
+    return this.httpClient.delete(`${this.API_URL}/${idPersona}`);
   }
 }

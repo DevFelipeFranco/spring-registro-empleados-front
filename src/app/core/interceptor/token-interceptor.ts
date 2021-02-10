@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthInterceptorService implements HttpInterceptor {
 
     constructor(public authService: AuthService,
-        private readonly router: Router) {
+                private readonly router: Router) {
 
     }
 
@@ -23,6 +23,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         if (jwtToken) {
             request = req.clone({
                 headers: req.headers.set('Authorization', 'Bearer ' + jwtToken)
+                                    .set('Content-Type', 'application/json')
             });
         }
 

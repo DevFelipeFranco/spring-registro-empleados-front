@@ -1,5 +1,5 @@
 import { Persona } from './../../../../core/models/persona.model';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PersonaService } from 'src/app/core/services/persona/persona.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { PersonaService } from 'src/app/core/services/persona/persona.service';
 })
 export class ListaPersonaComponent implements OnInit {
 
-  @Input() personas: Persona[];
+  personas: Persona[];
   @Output() editarPersona = new EventEmitter<Persona>();
 
   displayedColumns: string[] = ['tipoDocumento', 'identificacion', 'nombres', 'fechaNacimiento', 'edad', 'email', 'direccion', 'editar', 'eliminar'];
@@ -18,11 +18,18 @@ export class ListaPersonaComponent implements OnInit {
   constructor(private readonly personaService: PersonaService) { }
 
   ngOnInit(): void {
-    this.cargarTabla();
+    this.consultarPersona();
   }
 
-  cargarTabla(): void {
-    this.dataSource = this.personas;
+  consultarPersona(): void {
+    this.personaService.registrarUsuario().subscribe((personas: Persona[]) => {
+      this.personas = personas;
+      this.cargarTabla(this.personas);
+    });
+  }
+
+  cargarTabla(personas: Persona[]): void {
+    this.dataSource = personas;
     console.log(this.dataSource);
   }
 
@@ -33,10 +40,11 @@ export class ListaPersonaComponent implements OnInit {
 
   onEliminarPersona(persona: Persona): void {
     console.log('Eliminara a la persona', persona.idPersona);
-    const listaPersonasActualizada = this.personas.filter(person => persona.idPersona !== person.idPersona);
     this.personaService.eliminarPersona(persona.idPersona).subscribe(info => {
       console.log(info);
-      this.dataSource = listaPersonasActualizada;
+      const listaPersonasActualizada = this.dataSource.filter(person => persona.idPersona !== person.idPersona);
+      this.cargarTabla(listaPersonasActualizada);
+      console.log('Asi quedo la tabla', this.dataSource);
     });
   }
 }

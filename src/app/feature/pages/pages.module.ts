@@ -7,16 +7,18 @@ import { SharedModule } from '../../shared/shared.module';
 
 // Modulos Angular Material
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatTableModule} from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 
 import { PagesComponent } from './pages.component';
@@ -28,12 +30,18 @@ import { ListaPersonaComponent } from './persona/lista-persona/lista-persona.com
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from 'src/app/core/interceptor/token-interceptor';
 import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/editar-crear-persona.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 import { InformacionContratoComponent } from './informacion-contrato/informacion-contrato.component';
 
 @NgModule({
-  declarations: [PagesComponent, DashboardComponent, PerfilComponent, PersonaComponent, ListaPersonaComponent, EditarCrearPersonaComponent, InformacionContratoComponent],
+  declarations: [
+    PagesComponent,
+    DashboardComponent,
+    PerfilComponent,
+    PersonaComponent,
+    ListaPersonaComponent,
+    EditarCrearPersonaComponent,
+    InformacionContratoComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -49,7 +57,8 @@ import { InformacionContratoComponent } from './informacion-contrato/informacion
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [
     {

@@ -98,6 +98,15 @@
                                         </mat-form-field>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <mat-radio-group name="genero" formControlName="genero">
+                                            <mat-radio-button [checked]="compararGenero(genero)" *ngFor="let genero of generos" name="genero" [value]="genero" style="margin: 10px">
+                                                {{genero.descripcion}}
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </td>
+                                </tr>
                             </table>
 
                             <div class="action-containt">

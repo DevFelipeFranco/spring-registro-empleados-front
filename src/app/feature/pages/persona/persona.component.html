@@ -16,7 +16,7 @@
                         <p class="card-category">Sub Titulo</p>
                     </div>
                     <div class="card-body">
-                        <app-lista-persona *ngIf="listaPersonas" [personas]="listaPersonas" (editarPersona)="editarPersona($event)"></app-lista-persona>
+                        <app-lista-persona (editarPersona)="editarPersona($event)"></app-lista-persona>
                     </div>
                 </div>
             </div>

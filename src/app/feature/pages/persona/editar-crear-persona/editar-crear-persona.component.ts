@@ -6,6 +6,7 @@ import { Persona } from 'src/app/core/models/persona.model';
 import { PersonaService } from '../../../../core/services/persona/persona.service';
 import { TipoDocumento } from '../../../../core/models/tipoDocumento.model';
 import { AuthService } from '../../../../core/services/auth/auth.service';
+import { Genero } from '../../../../core/models/genero.model';
 
 @Component({
   selector: 'app-editar-persona',
@@ -17,6 +18,7 @@ export class EditarCrearPersonaComponent implements OnInit {
   personaFormulario: FormGroup;
   persona: Persona;
   tipoDocumentos: TipoDocumento[];
+  generos: Genero[];
   titulo: string;
   crear: boolean;
 
@@ -35,6 +37,7 @@ export class EditarCrearPersonaComponent implements OnInit {
     // this.personaFormulario.patchValue(this.persona);
     this.editarOCrearPersona(this.persona);
     this.tipoDocumento();
+    this.consultarGenero();
   }
 
   iniciarFormulario(): void {
@@ -48,12 +51,17 @@ export class EditarCrearPersonaComponent implements OnInit {
       fechaNacimiento: ['', Validators.required],
       direccion: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      edad: [{ value: '', disabled: true }, Validators.required]
+      edad: [{ value: '', disabled: true }, Validators.required],
+      genero: ['', Validators.required]
     });
   }
 
   tipoDocumento(): void {
     this.persoaService.tipoDocumentos().subscribe(tipoDocumentos => this.tipoDocumentos = tipoDocumentos);
+  }
+
+  consultarGenero(): void {
+    this.persoaService.generos().subscribe(generos => this.generos = generos);
   }
 
   onEditarPersona(): void {
@@ -69,7 +77,8 @@ export class EditarCrearPersonaComponent implements OnInit {
       direccion: this.personaFormulario.get('direccion').value,
       email: this.personaFormulario.get('email').value,
       edad: this.personaFormulario.get('edad').value,
-      usuario: this.persona.usuario
+      usuario: this.persona.usuario,
+      genero: this.persona.genero
     };
     this.persoaService.actualizarPersona(this.persona).subscribe(personaActualizada => console.log(personaActualizada));
   }
@@ -96,7 +105,8 @@ export class EditarCrearPersonaComponent implements OnInit {
       direccion: this.personaFormulario.get('direccion').value,
       email: this.personaFormulario.get('email').value,
       edad: this.personaFormulario.get('edad').value,
-      usuario
+      usuario,
+      genero: this.personaFormulario.get('genero').value
     };
 
     this.persoaService.crearPersona(this.persona).subscribe(personaCreada =>
@@ -115,11 +125,18 @@ export class EditarCrearPersonaComponent implements OnInit {
       this.titulo = 'Crear Persona';
 
     }
-
   }
 
   compararTipoDocumento(td1: TipoDocumento, td2: TipoDocumento): boolean {
     return td1 && td2 ? td1.idTipoDocumento === td2.idTipoDocumento : td1 === td2;
+  }
+
+  compararGenero(td1: Genero): boolean {
+    if (this.persona) {
+      return td1 ? td1.idGenero === this.persona.genero.idGenero : td1 === this.persona.genero;
+    } else {
+      return false;
+    }
   }
 
   public hasError = (controlName: string, errorName: string) => {

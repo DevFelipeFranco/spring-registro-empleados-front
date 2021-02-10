@@ -10,7 +10,6 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class PersonaComponent implements OnInit {
 
-  listaPersonas: Persona[];
   navigationExtras: NavigationExtras = {
     state: {
       value: null
@@ -20,16 +19,7 @@ export class PersonaComponent implements OnInit {
   constructor(private readonly personaService: PersonaService,
               private readonly router: Router) { }
 
-  ngOnInit(): void {
-    this.consultarPersona();
-  }
-
-  consultarPersona(): void {
-    this.personaService.registrarUsuario().subscribe((personas: Persona[]) => {
-      this.listaPersonas = personas;
-      console.log(this.listaPersonas);
-    });
-  }
+  ngOnInit(): void { }
 
   editarPersona(persona: Persona): void {
     console.log('Se envio la persona del componente hijo al padre', persona);
