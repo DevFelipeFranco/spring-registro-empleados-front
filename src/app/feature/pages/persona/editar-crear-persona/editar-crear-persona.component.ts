@@ -78,7 +78,7 @@ export class EditarCrearPersonaComponent implements OnInit {
       email: this.personaFormulario.get('email').value,
       edad: this.personaFormulario.get('edad').value,
       usuario: this.persona.usuario,
-      genero: this.persona.genero
+      genero: this.personaFormulario.get('genero').value
     };
     this.persoaService.actualizarPersona(this.persona).subscribe(personaActualizada => console.log(personaActualizada));
   }
