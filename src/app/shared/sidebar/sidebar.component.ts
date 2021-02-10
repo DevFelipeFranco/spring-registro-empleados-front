@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  usuarioLogin: string;
+
+  constructor(private readonly authService: AuthService) { }
 
   ngOnInit(): void {
+    this.usuarioLogin = this.authService.getJwtUsername();
   }
 }

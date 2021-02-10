@@ -29,4 +29,8 @@ export class PersonaService {
   crearPersona(persona: Persona): Observable<Persona> {
     return this.httpClient.post<Persona>(this.API_URL, persona);
   }
+
+  eliminarPersona(idPersona: number): Observable<string> {
+    return this.httpClient.delete<string>(`${this.API_URL}/${idPersona}`);
+  }
 }

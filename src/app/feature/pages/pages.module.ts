@@ -30,9 +30,10 @@ import { AuthInterceptorService } from 'src/app/core/interceptor/token-intercept
 import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/editar-crear-persona.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { InformacionContratoComponent } from './informacion-contrato/informacion-contrato.component';
 
 @NgModule({
-  declarations: [PagesComponent, DashboardComponent, PerfilComponent, PersonaComponent, ListaPersonaComponent, EditarCrearPersonaComponent],
+  declarations: [PagesComponent, DashboardComponent, PerfilComponent, PersonaComponent, ListaPersonaComponent, EditarCrearPersonaComponent, InformacionContratoComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -55,7 +55,7 @@
     <ng-container matColumnDef="eliminar">
         <th mat-header-cell *matHeaderCellDef> Eliminar </th>
         <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+            <button mat-icon-button color="primary" (click)="onEliminarPersona(element)">
                 <mat-icon fontSet="far" fontIcon="fa-trash-alt"></mat-icon>
             </button>
         </td>
