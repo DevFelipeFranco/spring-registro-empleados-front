@@ -4,6 +4,8 @@ export interface RegistarUsuario {
     clave: string;
     email: string;
     usuario: string;
+    nombres: string;
+    apellidos: string;
 }
 
 export interface Usuario {

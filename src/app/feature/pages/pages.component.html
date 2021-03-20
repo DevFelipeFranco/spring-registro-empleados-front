@@ -2,9 +2,14 @@
 
 
 <mat-drawer-container>
-    <mat-drawer mode="side" [opened]="sideBarOpen">
+    <mat-drawer class="wrapper" mode="side" [opened]="sideBarOpen">
 
-        <app-sidebar></app-sidebar>
+        <!-- <div class="wrapper"> -->
+        <div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+            <app-sidebar></app-sidebar>
+            <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+        </div>
+        <!-- </div> -->
     </mat-drawer>
     <mat-drawer-content>
 

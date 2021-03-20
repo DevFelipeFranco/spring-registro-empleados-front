@@ -17,7 +17,7 @@ export class AuthService {
               private readonly localStorage: LocalStorageService) { }
 
   registrarUsuario(usuario: RegistarUsuario): Observable<any> {
-    return this.httpClient.post(this.API_URL + '/signup', usuario, { responseType: 'text' });
+    return this.httpClient.post(this.API_URL + '/signup', usuario);
   }
 
   login(login: Login): Observable<boolean> {

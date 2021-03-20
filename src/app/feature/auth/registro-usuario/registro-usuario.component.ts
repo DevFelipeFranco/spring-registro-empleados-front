@@ -21,6 +21,8 @@ export class RegistroUsuarioComponent implements OnInit {
 
   private iniciarFormulario(): void {
     this.registroUsuarioForm = this.fb.group({
+      nombres: ['', Validators.required],
+      apellidos: ['', Validators.required],
       usuario: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       clave: ['', Validators.required],

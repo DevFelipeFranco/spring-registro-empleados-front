@@ -4,6 +4,20 @@
             <form [formGroup]="registroUsuarioForm" (ngSubmit)="registrarUsuario()" class="sign-up-form" autocomplete="off">
                 <h2 class="title">Registrar Usuario</h2>
                 <mat-form-field appearance="outline">
+                    <mat-label>Nombres</mat-label>
+                    <input matInput formControlName="nombres" placeholder="Nombres">
+                    <mat-icon matPrefix class="fas fa-user"></mat-icon>
+                    <mat-error *ngIf="checkError('nombres', 'required')">El <strong>Nombre</strong> es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput formControlName="apellidos" placeholder="Apellidos">
+                    <mat-icon matPrefix class="fas fa-user"></mat-icon>
+                    <mat-error *ngIf="checkError('apellidos', 'required')">El <strong>Apellido</strong> es requerido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
                     <mat-label>Usuario</mat-label>
                     <input matInput formControlName="usuario" placeholder="Usuario">
                     <mat-icon matPrefix class="fas fa-user"></mat-icon>
