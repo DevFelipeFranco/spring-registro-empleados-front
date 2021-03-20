@@ -86,6 +86,8 @@ export class EditarCrearPersonaComponent implements OnInit {
   onCrearPersona(): void {
     console.log('Se va a crear la persona');
     const usuario: Usuario = {
+      nombres: undefined,
+      apellidos: undefined,
       usuario: this.authService.getJwtUsername(),
       email: undefined,
       clave: undefined,

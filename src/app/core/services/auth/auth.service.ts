@@ -10,7 +10,7 @@ import { Login, LoginResponse, RegistarUsuario, Usuario } from '../../models/usu
 })
 export class AuthService {
 
-  private API_URL = 'https://localhost:9003/api/auth';
+  private API_URL = 'http://localhost:9003/api/auth';
   private API_URL_PROD = 'https://spring-registro-empleados-back.herokuapp.com/api/auth';
 
   constructor(private readonly httpClient: HttpClient,

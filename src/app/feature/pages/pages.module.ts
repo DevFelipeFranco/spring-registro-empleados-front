@@ -31,6 +31,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from 'src/app/core/interceptor/token-interceptor';
 import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/editar-crear-persona.component';
 import { InformacionContratoComponent } from './informacion-contrato/informacion-contrato.component';
+import { ListarInformacionContratoComponent } from './informacion-contrato/listar-informacion-contrato/listar-informacion-contrato.component';
+import { EditarCrearInformacionContratoComponent } from './informacion-contrato/editar-crear-informacion-contrato/editar-crear-informacion-contrato.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { InformacionContratoComponent } from './informacion-contrato/informacion
     PersonaComponent,
     ListaPersonaComponent,
     EditarCrearPersonaComponent,
-    InformacionContratoComponent
+    InformacionContratoComponent,
+    ListarInformacionContratoComponent,
+    EditarCrearInformacionContratoComponent
   ],
   imports: [
     CommonModule,

@@ -10,7 +10,7 @@ import { Genero } from '../../models/genero.model';
 })
 export class PersonaService {
 
-  private API_URL = 'https://localhost:9003/api/persona';
+  private API_URL = 'http://localhost:9003/api/persona';
   private API_URL_PROD = 'https://spring-registro-empleados-back.herokuapp.com/api/persona';
 
   constructor(private readonly httpClient: HttpClient) { }
