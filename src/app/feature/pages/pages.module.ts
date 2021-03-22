@@ -33,6 +33,8 @@ import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/edit
 import { InformacionContratoComponent } from './informacion-contrato/informacion-contrato.component';
 import { ListarInformacionContratoComponent } from './informacion-contrato/listar-informacion-contrato/listar-informacion-contrato.component';
 import { EditarCrearInformacionContratoComponent } from './informacion-contrato/editar-crear-informacion-contrato/editar-crear-informacion-contrato.component';
+import { ClientesComponent } from './clientes/clientes.component';
+import { ListarClientesComponent } from './clientes/listar-clientes/listar-clientes.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { EditarCrearInformacionContratoComponent } from './informacion-contrato/
     EditarCrearPersonaComponent,
     InformacionContratoComponent,
     ListarInformacionContratoComponent,
-    EditarCrearInformacionContratoComponent
+    EditarCrearInformacionContratoComponent,
+    ClientesComponent,
+    ListarClientesComponent
   ],
   imports: [
     CommonModule,

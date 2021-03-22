@@ -7,6 +7,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { PersonaComponent } from './persona/persona.component';
 import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/editar-crear-persona.component';
 import { InformacionContratoComponent } from './informacion-contrato/informacion-contrato.component';
+import { ClientesComponent } from './clientes/clientes.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'perfil', component: PerfilComponent },
       { path: 'persona', component: PersonaComponent },
       { path: 'persona/editar-crear-persona', component: EditarCrearPersonaComponent },
+      { path: 'cliente', component: ClientesComponent },
       { path: 'info-contrato', component: InformacionContratoComponent },
     ]
   }
