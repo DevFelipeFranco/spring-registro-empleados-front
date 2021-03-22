@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Persona } from '../../models/persona.model';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ export class PersonaService {
 
   constructor(private readonly httpClient: HttpClient) { }
 
-  registrarUsuario(): Observable<Persona[]> {
+  registrarUsuario(): Observable<Persona[] | HttpErrorResponse> {
     return this.httpClient.get<Persona[]>(this.API_URL);
   }
 

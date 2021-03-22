@@ -1,17 +1,22 @@
-import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../../environments/environment';
+import { HttpClient, HttpResponse, HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Login, LoginResponse, RegistarUsuario, Usuario } from '../../models/usuario.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private API_URL = 'http://localhost:9003/api/auth';
+  public API_URL = `${environment.apiUrl}/auth`;
   private API_URL_PROD = 'https://spring-registro-empleados-back.herokuapp.com/api/auth';
+  private token: string;
+  private loggedInUsername: string;
+  private jwtHelper = new JwtHelperService();
 
   constructor(private readonly httpClient: HttpClient,
               private readonly localStorage: LocalStorageService) { }
@@ -38,5 +43,65 @@ export class AuthService {
 
   getJwtUsername(): any {
     return this.localStorage.retrieve('username');
+  }
+
+  // ############### PRUEBA SEGUN TUTORIAL
+
+  loginTest(login: Login): Observable<HttpResponse<any> | HttpErrorResponse> {
+    return this.httpClient.post<HttpResponse<any> | HttpErrorResponse>(`${this.API_URL}/login`, login, { observe: 'response' });
+  }
+
+  public uploadProfileImage(uploadProfileImageFormData: FormData): Observable<HttpEvent<Usuario> | HttpErrorResponse> {
+    return this.httpClient.post<Usuario>(`${this.API_URL}/auth/imagen/upload`, uploadProfileImageFormData, {reportProgress: true, observe: 'events'});
+  }
+
+  public logOut(): void {
+    this.token = null;
+    this.loggedInUsername = null;
+    this.localStorage.clear();
+  }
+
+  public saveToken(token: string): void {
+    this.token = token;
+    this.localStorage.store('token', token);
+  }
+
+  public addUserToLocalCache(usuario: Usuario): void {
+    this.localStorage.store('usuario', usuario);
+  }
+
+  public getUsuarioFromLocalCache(): Usuario {
+    return this.localStorage.retrieve('usuario');
+  }
+
+  public loadToken(): void {
+    this.token = this.localStorage.retrieve('token');
+  }
+
+  public getToken(): string {
+    return this.token;
+  }
+
+  public isLoggeIn(): boolean {
+    this.loadToken();
+    if (this.token && this.token !== '') {
+      if (this.jwtHelper.decodeToken(this.token).sub !== null || '') {
+        if (!this.jwtHelper.isTokenExpired(this.token)) {
+          this.loggedInUsername = this.jwtHelper.decodeToken(this.token).sub;
+          return true;
+        }
+      }
+    } else {
+      this.logOut();
+      return false;
+    }
+  }
+
+
+  public createUploadProfileImage(imagenProfile: File, idUsuario: number): FormData {
+    const formData = new FormData();
+    formData.append('imagenPerfil', imagenProfile);
+    formData.append('id', JSON.stringify(idUsuario));
+    return formData;
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { NotificationType } from 'src/app/core/enum/notification-type.enum';
+import { NotificationService } from 'src/app/shared/notification/services/notification.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
@@ -15,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private readonly fb: FormBuilder,
               private readonly authService: AuthService,
+              private readonly notificationService: NotificationService,
               private readonly router: Router) { }
 
   ngOnInit(): void {
@@ -34,6 +37,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(data => {
       this.router.navigateByUrl('/dashboard');
     }, error => {
+      this.notificationService.notify(NotificationType.ERROR, error.error.message.toUpperCase());
+      console.log(error);
       throwError(error);
     });
   }
