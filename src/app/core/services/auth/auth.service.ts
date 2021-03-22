@@ -37,6 +37,10 @@ export class AuthService {
       }));
   }
 
+  consulatUsuarios(): Observable<Usuario[] | HttpErrorResponse> {
+    return this.httpClient.get<Usuario[]>(`${this.API_URL}/allUsuarios`);
+  }
+
   getJwtToken(): any {
     return this.localStorage.retrieve('authenticationToken');
   }

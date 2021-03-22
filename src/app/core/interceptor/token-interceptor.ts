@@ -24,6 +24,10 @@ export class AuthInterceptorService implements HttpInterceptor {
             return next.handle(req);
         }
 
+        if (req.url.includes(`${this.authService.API_URL}/signup`)) {
+            return next.handle(req);
+          }
+
         if (jwtToken) {
             request = req.clone({
                 headers: req.headers.set('Authorization', 'Bearer ' + jwtToken)
