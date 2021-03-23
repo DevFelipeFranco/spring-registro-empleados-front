@@ -1,3 +1,8 @@
-<div *ngFor="let usuario of usuarios">
-    <app-card-preview-profile [usuario]="usuario"></app-card-preview-profile>
+<div class="page-content page-container" id="page-content">
+    <div class="row">
+        <div *ngFor="let usuario of usuarios">
+            <app-card-preview-profile [usuario]="usuario" (editarUsuario)="editarUsuario($event)"></app-card-preview-profile>
+        </div>
+
+    </div>
 </div>

@@ -1,7 +1,7 @@
-import { LoginResponse, Usuario } from './../../core/models/usuario.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailInformationProfileComponent } from '../detail-information-profile/detail-information-profile.component';
+import { Usuario } from '../../core/models/usuario.model';
 
 @Component({
   selector: 'app-card-preview-profile',
@@ -11,6 +11,8 @@ import { DetailInformationProfileComponent } from '../detail-information-profile
 export class CardPreviewProfileComponent implements OnInit {
 
   @Input() public usuario: Usuario;
+  @Output() editarUsuario = new EventEmitter<Usuario>();
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -23,4 +25,8 @@ export class CardPreviewProfileComponent implements OnInit {
     });
   }
 
+  onEditarUsuario(usuario: Usuario): void {
+    console.log(usuario);
+    this.editarUsuario.emit(usuario);
+  }
 }

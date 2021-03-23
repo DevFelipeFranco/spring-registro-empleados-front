@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { LoginResponse, Usuario } from '../../../../core/models/usuario.model';
 
@@ -10,8 +11,14 @@ import { LoginResponse, Usuario } from '../../../../core/models/usuario.model';
 export class ListarUsuariosComponent implements OnInit {
 
   public usuarios: Usuario[];
+  navigationExtras: NavigationExtras = {
+    state: {
+      value: null
+    }
+  };
 
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService,
+              private readonly router: Router) { }
 
   ngOnInit(): void {
     this.consultarUsuarios();
@@ -24,6 +31,12 @@ export class ListarUsuariosComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+  }
+
+  editarUsuario(usuario: Usuario): void {
+    console.log('Se envio el usuario del componente hijo al padre', usuario);
+    this.navigationExtras.state.value = usuario;
+    this.router.navigate(['/dashboard/perfil/editar-crear-usuario'], this.navigationExtras);
   }
 
 }

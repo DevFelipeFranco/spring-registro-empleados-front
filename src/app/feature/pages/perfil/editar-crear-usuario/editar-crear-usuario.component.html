@@ -1,0 +1,116 @@
+<div class="container bootstrap snippets bootdey">
+
+    <div class="col">
+        <div class="row">
+            <div class="col mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="e-profile">
+                            <div class="row">
+
+                                <div class="col-12 col-sm-auto mb-3">
+                                    <div class="user-heading round" style="width: 140px;">
+                                        <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                            <!-- <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span> -->
+                                            <img [src]="usuario?.imagenPerfilUrl" style="height: 100%; object-fit: scale-down;" alt="Imagen de Perfil">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{usuarioFormulario.get('nombres').value}} {{usuarioFormulario.get('apellidos').value}}</h4>
+                                        <!-- <p class="mb-0">@johnny.s</p> -->
+                                        <div class="text-muted"><small>{{usuario.fechaUltimoIngreso}}</small></div>
+                                        <div class="mt-2">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fa fa-fw fa-camera"></i>
+                                                <span>Change Photo</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="text-center text-sm-right">
+                                        <span class="badge badge-secondary">administrator</span>
+                                        <div class="text-muted"><small>Creado {{usuario.fechaCreacion}}</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="profile-info col-md-12">
+
+                                    <div class="panel">
+                                        <div class="panel-body bio-graph-info">
+                                            <h1>Detalle</h1>
+                                            <div class="row">
+                                                <form [formGroup]="usuarioFormulario">
+                                                    <div class="bio-row">
+
+
+                                                        <mat-form-field class="example-full-width">
+                                                            <mat-label>Nombres</mat-label>
+                                                            <input matInput type="text" formControlName="nombres" id="nombres">
+                                                            <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
+                                                        </mat-form-field>
+
+
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <mat-form-field class="example-full-width">
+                                                            <mat-label>Apellidos</mat-label>
+                                                            <input matInput type="text" formControlName="apellidos" id="apellidos">
+                                                            <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <mat-form-field class="example-full-width">
+                                                            <mat-label>Cargo</mat-label>
+                                                            <input matInput type="text" formControlName="cargo" id="cargo">
+                                                            <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <mat-form-field class="example-full-width">
+                                                            <mat-label>Email</mat-label>
+                                                            <input matInput type="text" formControlName="email" id="email">
+                                                            <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <mat-form-field class="example-full-width">
+                                                            <mat-label>Celular</mat-label>
+                                                            <input matInput type="text" formControlName="celular" id="celular">
+                                                            <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
+                                                        </mat-form-field>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+                <!-- <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="px-xl-3">
+                            <button class="btn btn-block btn-secondary">
+                                <i class="fa fa-sign-out"></i>
+                                <span> Logout</span>
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title font-weight-bold">Support</h6>
+                        <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                        <button type="button" class="btn btn-primary">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
