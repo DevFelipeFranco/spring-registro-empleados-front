@@ -14,13 +14,15 @@ export interface Usuario {
     nombres: string;
     apellidos: string;
     email: string;
-    clave: string;
+    clave?: string;
     estado: boolean;
     snNoBloqueado?: boolean;
     fechaCreacion: string;
     fechaUltimoIngreso?: string;
     fechaUltimoIngresoVisualizacion?: string;
     imagenPerfilUrl?: string;
+    cargo?: string;
+    celular?: string;
     roles: [Rol];
 }
 export interface Login {

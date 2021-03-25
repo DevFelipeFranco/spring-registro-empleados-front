@@ -41,6 +41,14 @@ export class AuthService {
     return this.httpClient.get<Usuario[]>(`${this.API_URL}/allUsuarios`);
   }
 
+  consultarUsuarioPorId(idUsuario: number): Observable<Usuario | HttpErrorResponse> {
+    return this.httpClient.get<Usuario>(`${this.API_URL}/idUsuario/${idUsuario}`);
+  }
+
+  actualizarInformacionUsuario(usuario: Usuario): Observable<Usuario | HttpErrorResponse> {
+    return this.httpClient.put<Usuario>(`${this.API_URL}/actualizarUsuario`, usuario);
+  }
+
   getJwtToken(): any {
     return this.localStorage.retrieve('authenticationToken');
   }
@@ -49,6 +57,13 @@ export class AuthService {
     return this.localStorage.retrieve('username');
   }
 
+  setIdUsuario(idUsuario: number): void {
+    this.localStorage.store('idUsuario', idUsuario);
+  }
+
+  getIdUsuario(): number {
+    return this.localStorage.retrieve('idUsuario');
+  }
   // ############### PRUEBA SEGUN TUTORIAL
 
   loginTest(login: Login): Observable<HttpResponse<any> | HttpErrorResponse> {

@@ -35,6 +35,7 @@ export class ListarUsuariosComponent implements OnInit {
 
   editarUsuario(usuario: Usuario): void {
     console.log('Se envio el usuario del componente hijo al padre', usuario);
+    this.authService.setIdUsuario(usuario.idUsuario);
     this.navigationExtras.state.value = usuario;
     this.router.navigate(['/dashboard/perfil/editar-crear-usuario'], this.navigationExtras);
   }

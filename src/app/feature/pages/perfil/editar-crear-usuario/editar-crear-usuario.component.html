@@ -20,7 +20,7 @@
                                     <div class="text-center text-sm-left mb-2 mb-sm-0">
                                         <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{usuarioFormulario.get('nombres').value}} {{usuarioFormulario.get('apellidos').value}}</h4>
                                         <!-- <p class="mb-0">@johnny.s</p> -->
-                                        <div class="text-muted"><small>{{usuario.fechaUltimoIngreso}}</small></div>
+                                        <div class="text-muted"><small>{{usuario?.fechaUltimoIngreso}}</small></div>
                                         <div class="mt-2">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fa fa-fw fa-camera"></i>
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="text-center text-sm-right">
                                         <span class="badge badge-secondary">administrator</span>
-                                        <div class="text-muted"><small>Creado {{usuario.fechaCreacion}}</small></div>
+                                        <div class="text-muted"><small>Creado {{usuario?.fechaCreacion}}</small></div>
                                     </div>
                                 </div>
                             </div>
@@ -80,6 +80,11 @@
                                                             <input matInput type="text" formControlName="celular" id="celular">
                                                             <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
                                                         </mat-form-field>
+                                                    </div>
+
+                                                    <div class="action-containt">
+                                                        <button mat-raised-button color="primary" (click)="onGuardarUsuario()" [disabled]="usuarioFormulario.invalid">Guardar</button>
+                                                        <button type="button" mat-raised-button routerLink='/dashboard/perfil' color="warn">Cancelar</button>
                                                     </div>
                                                 </form>
                                             </div>
