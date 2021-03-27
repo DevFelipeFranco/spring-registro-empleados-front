@@ -1,11 +1,12 @@
 import { environment } from './../../../../environments/environment';
-import { HttpClient, HttpResponse, HttpErrorResponse, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpErrorResponse, HttpEvent, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { Login, LoginResponse, RegistarUsuario, Usuario } from '../../models/usuario.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Rol } from '../../models/rol.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,10 @@ export class AuthService {
     return this.httpClient.get<Usuario>(`${this.API_URL}/idUsuario/${idUsuario}`);
   }
 
+  consularRoles(): Observable<Rol[] | HttpErrorResponse> {
+    return this.httpClient.get<Rol[]>(`${this.API_URL}/consultarRoles`);
+  }
+
   actualizarInformacionUsuario(usuario: Usuario): Observable<Usuario | HttpErrorResponse> {
     return this.httpClient.put<Usuario>(`${this.API_URL}/actualizarUsuario`, usuario);
   }
@@ -70,8 +75,17 @@ export class AuthService {
     return this.httpClient.post<HttpResponse<any> | HttpErrorResponse>(`${this.API_URL}/login`, login, { observe: 'response' });
   }
 
-  public uploadProfileImage(uploadProfileImageFormData: FormData): Observable<HttpEvent<Usuario> | HttpErrorResponse> {
-    return this.httpClient.post<Usuario>(`${this.API_URL}/auth/imagen/upload`, uploadProfileImageFormData, {reportProgress: true, observe: 'events'});
+  public uploadProfileImage(file: File, id: number): Observable<HttpEvent<any>> {
+    const formData = new FormData();
+    formData.append('imagenPerfil', file);
+    formData.append('id', id.toLocaleString());
+
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'multipart/form-data'
+    //   })
+    // };
+    return this.httpClient.post<any>(`${this.API_URL}/imagen/upload`, formData);
   }
 
   public logOut(): void {
@@ -119,8 +133,10 @@ export class AuthService {
 
   public createUploadProfileImage(imagenProfile: File, idUsuario: number): FormData {
     const formData = new FormData();
+    console.log('Si llego informacion: ', imagenProfile);
     formData.append('imagenPerfil', imagenProfile);
     formData.append('id', JSON.stringify(idUsuario));
+    console.log('Si llego informacion: ', formData.get('imagenPerfil'));
     return formData;
   }
 }

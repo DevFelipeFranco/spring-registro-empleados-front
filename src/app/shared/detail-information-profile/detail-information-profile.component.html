@@ -79,9 +79,8 @@
                 </div> -->
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title font-weight-bold">Support</h6>
-                        <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                        <button type="button" class="btn btn-primary">Contact Us</button>
+                        <h6 class="card-title font-weight-bold">Permissions From Role</h6>
+                        <h6 *ngFor="let authority of data.roles[0]?.autorizaciones" class="card-text">{{authority.autorizacion}}</h6>
                     </div>
                 </div>
                 <div class="card mb-3">

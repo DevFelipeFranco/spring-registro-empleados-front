@@ -12,7 +12,7 @@
                                     <div class="user-heading round" style="width: 140px;">
                                         <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
                                             <!-- <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span> -->
-                                            <img [src]="usuario?.imagenPerfilUrl" style="height: 100%; object-fit: scale-down;" alt="Imagen de Perfil">
+                                            <img [src]="usuario?.imagenPerfilUrl" style="height: 100%; width: 100%; object-fit: scale-down;" alt="Imagen de Perfil">
                                         </div>
                                     </div>
                                 </div>
@@ -22,10 +22,12 @@
                                         <!-- <p class="mb-0">@johnny.s</p> -->
                                         <div class="text-muted"><small>{{usuario?.fechaUltimoIngreso}}</small></div>
                                         <div class="mt-2">
-                                            <button class="btn btn-primary" type="button">
+                                            <button class="btn btn-primary" type="button" (click)="uploader.click()">
                                                 <i class="fa fa-fw fa-camera"></i>
                                                 <span>Change Photo</span>
                                             </button>
+                                            <input hidden type="file" accept="image/*" multiple="multiple" #uploader name="profileImage" (change)="uploadFile($event.target.files[0])" />
+                                            <!-- <input type="file" accept="image/*" multiple="multiple" name="profileImage" (change)="uploadFile($event.target.files[0])" /> -->
                                         </div>
                                     </div>
                                     <div class="text-center text-sm-right">
@@ -43,15 +45,28 @@
                                             <div class="row">
                                                 <form [formGroup]="usuarioFormulario">
                                                     <div class="bio-row">
-
-
+                                                        <mat-form-field class="example-full-width">
+                                                            <mat-label>Roles</mat-label>
+                                                            <mat-select [compareWith]="compararRol" formControlName="roles">
+                                                                <mat-option *ngFor="let rol of roles" [value]="rol">
+                                                                    {{rol.descripcion}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <mat-form-field class="example-full-width">
+                                                            <mat-label>Usuario</mat-label>
+                                                            <input matInput type="text" formControlName="usuario" id="usuario">
+                                                            <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="bio-row">
                                                         <mat-form-field class="example-full-width">
                                                             <mat-label>Nombres</mat-label>
                                                             <input matInput type="text" formControlName="nombres" id="nombres">
                                                             <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
                                                         </mat-form-field>
-
-
                                                     </div>
                                                     <div class="bio-row">
                                                         <mat-form-field class="example-full-width">
@@ -80,6 +95,12 @@
                                                             <input matInput type="text" formControlName="celular" id="celular">
                                                             <!-- <mat-error *ngIf="hasError('identificacion', 'required')">Name is required</mat-error> -->
                                                         </mat-form-field>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <section class="example-section">
+                                                            <mat-checkbox class="example-margin" formControlName="estado">Activo</mat-checkbox>
+                                                            <mat-checkbox class="example-margin" formControlName="snNoBloqueado">No Bloqueado</mat-checkbox>
+                                                        </section>
                                                     </div>
 
                                                     <div class="action-containt">
@@ -110,9 +131,8 @@
                 </div> -->
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title font-weight-bold">Support</h6>
-                        <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                        <button type="button" class="btn btn-primary">Contact Us</button>
+                        <h6 class="card-title font-weight-bold">Permissions From Role</h6>
+                        <h6 *ngFor="let authority of usuario?.roles[0].autorizaciones" class="card-text">{{authority.autorizacion}}</h6>
                     </div>
                 </div>
             </div>

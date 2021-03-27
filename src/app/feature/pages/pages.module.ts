@@ -18,6 +18,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 
@@ -27,7 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PersonaComponent } from './persona/persona.component';
 import { ListaPersonaComponent } from './persona/lista-persona/lista-persona.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from 'src/app/core/interceptor/token-interceptor';
 import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/editar-crear-persona.component';
 import { InformacionContratoComponent } from './informacion-contrato/informacion-contrato.component';
@@ -56,6 +58,7 @@ import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/edita
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
     PagesRoutingModule,
@@ -70,7 +73,8 @@ import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/edita
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCheckboxModule
   ],
   providers: [
     {
