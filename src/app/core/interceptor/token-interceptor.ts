@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthInterceptorService implements HttpInterceptor {
 
     constructor(public authService: AuthService,
-                private readonly router: Router) {
+        private readonly router: Router) {
 
     }
 
@@ -26,7 +26,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
         if (req.url.includes(`${this.authService.API_URL}/signup`)) {
             return next.handle(req);
-          }
+        }
 
         if (jwtToken) {
             request = req.clone({

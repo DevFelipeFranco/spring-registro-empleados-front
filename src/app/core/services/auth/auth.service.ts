@@ -75,17 +75,12 @@ export class AuthService {
     return this.httpClient.post<HttpResponse<any> | HttpErrorResponse>(`${this.API_URL}/login`, login, { observe: 'response' });
   }
 
-  public uploadProfileImage(file: File, id: number): Observable<HttpEvent<any>> {
+  public uploadProfileImage(file: File, id: number): Observable<HttpEvent<Usuario>> {
     const formData = new FormData();
     formData.append('imagenPerfil', file);
     formData.append('id', id.toLocaleString());
 
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'multipart/form-data'
-    //   })
-    // };
-    return this.httpClient.post<any>(`${this.API_URL}/imagen/upload`, formData);
+    return this.httpClient.post<Usuario>(`${this.API_URL}/imagen/upload`, formData, {reportProgress: true, observe: 'events'});
   }
 
   public logOut(): void {

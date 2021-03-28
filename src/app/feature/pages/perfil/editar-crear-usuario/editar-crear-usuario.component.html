@@ -14,6 +14,9 @@
                                             <!-- <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span> -->
                                             <img [src]="usuario?.imagenPerfilUrl" style="height: 100%; width: 100%; object-fit: scale-down;" alt="Imagen de Perfil">
                                         </div>
+                                        <div *ngIf="fileStatus?.status==='progress'" class="progress mt-1">
+                                            <div class="progress-bar bg-info" role="progressbar" [style.width.%]="fileStatus?.percentage" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{fileStatus?.percentage}}%</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
@@ -132,7 +135,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title font-weight-bold">Permissions From Role</h6>
-                        <h6 *ngFor="let authority of usuario?.roles[0].autorizaciones" class="card-text">{{authority.autorizacion}}</h6>
+                        <h6 *ngFor="let authority of usuario?.roles[0]?.autorizaciones" class="card-text">{{authority.autorizacion}}</h6>
                     </div>
                 </div>
             </div>

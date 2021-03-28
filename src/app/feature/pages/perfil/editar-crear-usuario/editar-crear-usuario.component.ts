@@ -1,9 +1,11 @@
+import { HttpEvent, HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, throwError } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { NotificationType } from 'src/app/core/enum/notification-type.enum';
+import { FileUploadStatus } from 'src/app/core/models/file-upload-status.model';
 import { Rol } from 'src/app/core/models/rol.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { AuthService } from '../../../../core/services/auth/auth.service';
@@ -24,6 +26,7 @@ export class EditarCrearUsuarioComponent implements OnInit, OnDestroy {
   public roles: Rol[];
   public profileImage: File;
   public updateProfileImage: FormData;
+  public fileStatus = new FileUploadStatus();
 
   constructor(private readonly router: Router,
               private readonly fb: FormBuilder,
@@ -99,7 +102,7 @@ export class EditarCrearUsuarioComponent implements OnInit, OnDestroy {
       imagenPerfilUrl: this.usuario.imagenPerfilUrl,
       cargo: this.usuarioFormulario.get('cargo').value,
       celular: this.usuarioFormulario.get('celular').value,
-      roles: this.usuarioFormulario.get('roles').value
+      roles: [this.usuarioFormulario.get('roles').value]
     };
     this.authService.actualizarInformacionUsuario(this.usuario).subscribe(usuarioActualizado => {
       console.log(usuarioActualizado);
@@ -124,9 +127,33 @@ export class EditarCrearUsuarioComponent implements OnInit, OnDestroy {
   uploadFile(profileImage: File): void {
     this.profileImage = profileImage;
     console.log('POR QUE ESTA VACIO: ', this.profileImage);
+    this.authService.uploadProfileImage(profileImage, this.usuario.idUsuario)
+      .subscribe((event: HttpEvent<any>) => {
+        this.reportUploadProgress(event);
+      }, (error: HttpErrorResponse) => {
+        this.notificationService.notify(NotificationType.ERROR, error.error.message);
+        this.fileStatus.status = 'done';
+      });
+  }
 
-    // this.updateProfileImage = this.authService.createUploadProfileImage(profileImage, this.usuario.idUsuario);
-    this.authService.uploadProfileImage(profileImage, this.usuario.idUsuario).subscribe(usuario => console.log(usuario));
+  private reportUploadProgress(event: HttpEvent<any>): void {
+    switch (event.type) {
+      case HttpEventType.UploadProgress:
+        this.fileStatus.percentage = Math.round(100 * event.loaded / event.total);
+        this.fileStatus.status = 'progress';
+        break;
+      case HttpEventType.Response:
+        if (event.status === 200) {
+          this.usuario.imagenPerfilUrl = `${event.body.imagenPerfilUrl}?time=${new Date().getTime()}`;
+          this.notificationService.notify(NotificationType.SUCCESS, 'Se actualizo la imagen de perfil con exito');
+          this.fileStatus.status = 'done';
+          break;
+        } else {
+          this.notificationService.notify(NotificationType.ERROR, 'Ocurrio un error descargando la imagen, por favor intentalo de nuevo');
+          break;
+        }
+      default: 'Finished all processes';
+    }
   }
 
   ngOnDestroy() {
