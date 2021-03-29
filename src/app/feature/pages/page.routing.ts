@@ -9,12 +9,13 @@ import { EditarCrearPersonaComponent } from './persona/editar-crear-persona/edit
 import { InformacionContratoComponent } from './informacion-contrato/informacion-contrato.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/editar-crear-usuario.component';
+import { AuthenticationGuard } from 'src/app/core/guards/authentication.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthenticationGuard],
     children: [
       { path: '', component: DashboardComponent },
       { path: 'perfil', component: PerfilComponent },

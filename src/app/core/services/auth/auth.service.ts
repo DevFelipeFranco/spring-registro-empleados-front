@@ -54,11 +54,15 @@ export class AuthService {
     return this.httpClient.put<Usuario>(`${this.API_URL}/actualizarUsuario`, usuario);
   }
 
+  elimiarUsuarioPorId(idUsuario: number): Observable<string | HttpErrorResponse> {
+    return this.httpClient.delete<string>(`${this.API_URL}/eliminarUsuario/${idUsuario}`);
+  }
+
   getJwtToken(): any {
     return this.localStorage.retrieve('authenticationToken');
   }
 
-  getJwtUsername(): any {
+  getJwtUsername(): string {
     return this.localStorage.retrieve('username');
   }
 
@@ -91,7 +95,7 @@ export class AuthService {
 
   public saveToken(token: string): void {
     this.token = token;
-    this.localStorage.store('token', token);
+    this.localStorage.store('authenticationToken', token);
   }
 
   public addUserToLocalCache(usuario: Usuario): void {
@@ -103,7 +107,7 @@ export class AuthService {
   }
 
   public loadToken(): void {
-    this.token = this.localStorage.retrieve('token');
+    this.token = this.localStorage.retrieve('authenticationToken');
   }
 
   public getToken(): string {

@@ -21,7 +21,12 @@ export class LoginComponent implements OnInit {
               private readonly router: Router) { }
 
   ngOnInit(): void {
-    this.iniciarFormulario();
+    if (this.authService.isLoggeIn()) {
+      this.router.navigateByUrl('/dashboard');
+    } else {
+      this.router.navigateByUrl('/login');
+      this.iniciarFormulario();
+    }
   }
 
   iniciarFormulario(): void {
@@ -35,6 +40,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
 
     this.authService.login(this.loginForm.value).subscribe(data => {
+      this.authService.saveToken(this.authService.getJwtToken());
       this.router.navigateByUrl('/dashboard');
     }, error => {
       this.notificationService.notify(NotificationType.ERROR, error.error.message.toUpperCase());
