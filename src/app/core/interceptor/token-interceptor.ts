@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthInterceptorService implements HttpInterceptor {
 
     constructor(public authService: AuthService,
-        private readonly router: Router) {
+                private readonly router: Router) {
 
     }
 

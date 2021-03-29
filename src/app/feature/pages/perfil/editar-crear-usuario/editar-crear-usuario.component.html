@@ -17,6 +17,7 @@
                                         <div *ngIf="fileStatus?.status==='progress'" class="progress mt-1">
                                             <div class="progress-bar bg-info" role="progressbar" [style.width.%]="fileStatus?.percentage" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{fileStatus?.percentage}}%</div>
                                         </div>
+                                        <mat-progress-bar *ngIf="fileStatus?.status==='progress'" mode="determinate" value="{{fileStatus?.percentage}}">{{fileStatus?.percentage}}%</mat-progress-bar>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
