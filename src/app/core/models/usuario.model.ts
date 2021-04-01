@@ -23,7 +23,7 @@ export interface Usuario {
     imagenPerfilUrl?: string;
     cargo?: string;
     celular?: string;
-    roles: [Rol];
+    roles: Rol[];
 }
 export interface Login {
     clave: string;

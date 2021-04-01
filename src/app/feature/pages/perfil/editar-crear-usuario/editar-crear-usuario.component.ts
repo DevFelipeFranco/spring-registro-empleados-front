@@ -24,6 +24,7 @@ export class EditarCrearUsuarioComponent implements OnInit, OnDestroy {
   public titulo: string;
   public subscription: Subscription;
   public roles: Rol[];
+  public rolSeleccionado: Rol[];
   public profileImage: File;
   public updateProfileImage: FormData;
   public fileStatus = new FileUploadStatus();
@@ -87,7 +88,7 @@ export class EditarCrearUsuarioComponent implements OnInit, OnDestroy {
   }
 
   onGuardarUsuario(): void {
-    console.log(this.usuarioFormulario.get('roles').value);
+    // this.rolSeleccionado = this.usuarioFormulario.get('roles').value;
     this.usuario = {
       idUsuario: this.usuario.idUsuario,
       usuario: this.usuarioFormulario.get('usuario').value,
@@ -102,7 +103,7 @@ export class EditarCrearUsuarioComponent implements OnInit, OnDestroy {
       imagenPerfilUrl: this.usuario.imagenPerfilUrl,
       cargo: this.usuarioFormulario.get('cargo').value,
       celular: this.usuarioFormulario.get('celular').value,
-      roles: [this.usuarioFormulario.get('roles').value]
+      roles: this.rolSeleccionado ? this.rolSeleccionado : this.usuarioFormulario.get('roles').value
     };
     this.authService.actualizarInformacionUsuario(this.usuario).subscribe(usuarioActualizado => {
       console.log(usuarioActualizado);
@@ -156,7 +157,13 @@ export class EditarCrearUsuarioComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  rolSelect(rol: Rol): void {
+    console.log(rol);
+    this.rolSeleccionado = [];
+    this.rolSeleccionado.push(rol);
+  }
+
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }
