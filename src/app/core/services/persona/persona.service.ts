@@ -4,6 +4,7 @@ import { Persona } from '../../models/persona.model';
 import { Observable } from 'rxjs';
 import { TipoDocumento } from '../../models/tipoDocumento.model';
 import { Genero } from '../../models/genero.model';
+import { EmpleadosContratados } from '../../models/empleados-contratados.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class PersonaService {
 
   eliminarPersona(idPersona: number): Observable<any> {
     return this.httpClient.delete(`${this.API_URL}/${idPersona}`);
+  }
+
+  consultarCantidadPersonasContratadas(): Observable<EmpleadosContratados[]> {
+    return this.httpClient.get<EmpleadosContratados[]>(`${this.API_URL}/consultarPersonasContratadasPorMes`);
   }
 }

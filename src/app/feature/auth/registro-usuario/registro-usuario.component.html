@@ -19,9 +19,11 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Usuario</mat-label>
-                    <input matInput formControlName="usuario" placeholder="Usuario">
+                    <input matInput (keypress)="impedirIngresoCaracteresEspeciales($event)" formControlName="usuario" placeholder="Usuario">
                     <mat-icon matPrefix class="fas fa-user"></mat-icon>
                     <mat-error *ngIf="checkError('usuario', 'required')">El <strong>Usuario</strong> es requerido</mat-error>
+                    <mat-error *ngIf="checkError('usuario', 'minlength')">Debes ingresar minimo 4 caracteres</mat-error>
+                    <mat-error *ngIf="checkError('usuario', 'maxlength')">Superaste el maximo de 60 caracteres</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
@@ -38,6 +40,8 @@
                     <input matInput formControlName="clave" type="password" placeholder="Clave">
                     <mat-icon matPrefix class="fas fa-lock"></mat-icon>
                     <mat-error *ngIf="checkError('clave', 'required')">La <strong>Clave</strong> es requerida</mat-error>
+                    <mat-error *ngIf="checkError('clave', 'minlength')">Debes ingresar minimo 4 caracteres</mat-error>
+                    <mat-error *ngIf="checkError('clave', 'maxlength')">Superaste el maximo de 60 caracteres</mat-error>
                 </mat-form-field>
 
 

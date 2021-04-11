@@ -27,9 +27,9 @@ export class RegistroUsuarioComponent implements OnInit {
     this.registroUsuarioForm = this.fb.group({
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
-      usuario: ['', Validators.required],
+      usuario: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(60)])],
       email: ['', [Validators.required, Validators.email]],
-      clave: ['', Validators.required],
+      clave: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
     });
   }
 
@@ -43,6 +43,12 @@ export class RegistroUsuarioComponent implements OnInit {
       this.notificationService.notify(NotificationType.ERROR, error.error.message.toUpperCase());
       throwError(error);
     });
+  }
+
+  impedirIngresoCaracteresEspeciales(event): boolean {
+     let k: any;
+     k = event.charCode;  //         k = event.keyCode;  (Both can be used)
+     return((k > 64 && k < 91) || (k > 96 && k < 123) || k === 8 || k === 32 || (k >= 48 && k <= 57));
   }
 
   public checkError = (controlName: string, errorName: string) => {

@@ -16,4 +16,5 @@ export interface Persona {
     tipoDocumento: TipoDocumento;
     usuario: Usuario;
     genero: Genero;
+    fechaIngreso?: Date;
 }

@@ -69,7 +69,7 @@
                                 <tr>
                                     <td>
                                         <mat-form-field class="example-full-width">
-                                            <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" placeholder="Fecha de Nacimiento" id="dateOfBirth" readonly (click)="picker.open()">
+                                            <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="fechaNacimiento" placeholder="Fecha de Nacimiento" id="dateOfBirth" readonly (click)="picker.open()">
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
                                             <mat-error *ngIf="hasError('fechaNacimiento', 'required')">La Fecha de Nacimiento es requerida</mat-error>
@@ -91,7 +91,7 @@
                                             <mat-error *ngIf="hasError('email', 'email')">El Email no tiene un formato valido</mat-error>
                                         </mat-form-field>
                                     </td>
-                                    <td>
+                                    <td *ngIf="persona?.edad > 0">
                                         <mat-form-field class="example-full-width">
                                             <mat-label>Edad</mat-label>
                                             <input matInput formControlName="edad" id="edad">

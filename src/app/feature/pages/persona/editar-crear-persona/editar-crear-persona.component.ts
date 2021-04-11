@@ -21,6 +21,7 @@ export class EditarCrearPersonaComponent implements OnInit {
   generos: Genero[];
   titulo: string;
   crear: boolean;
+  public maxDate = new Date();
 
   constructor(private readonly fb: FormBuilder,
               private readonly persoaService: PersonaService,
@@ -78,7 +79,8 @@ export class EditarCrearPersonaComponent implements OnInit {
       email: this.personaFormulario.get('email').value,
       edad: this.personaFormulario.get('edad').value,
       usuario: this.persona.usuario,
-      genero: this.personaFormulario.get('genero').value
+      genero: this.personaFormulario.get('genero').value,
+      fechaIngreso: new Date(this.persona.fechaIngreso)
     };
     this.persoaService.actualizarPersona(this.persona).subscribe(personaActualizada => console.log(personaActualizada));
   }
