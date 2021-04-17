@@ -21,7 +21,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSortModule} from '@angular/material/sort';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 import { PagesComponent } from './pages.component';
@@ -77,7 +77,8 @@ import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/edita
     MatRadioModule,
     MatCheckboxModule,
     MatProgressBarModule,
-    MatSortModule
+    MatSortModule,
+    MatTabsModule
   ],
   providers: [
     {

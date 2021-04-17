@@ -24,15 +24,15 @@
                                             <i class="material-icons" style="font-size: 16px;">access_time</i>
                                             <small>{{data.fechaUltimoIngreso}}</small>
                                         </div>
-                                        <div class="mt-2">
+                                        <!-- <div class="mt-2">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fa fa-fw fa-camera"></i>
                                                 <span>Change Photo</span>
                                             </button>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="text-center text-sm-right">
-                                        <span class="badge badge-secondary">administrator</span>
+                                        <span class="badge badge-secondary">{{data.roles[0].descripcion}}</span>
                                         <div class="text-muted"><small>Creado {{data.fechaCreacion}}</small></div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                         <h6 *ngFor="let authority of data.roles[0]?.autorizaciones" class="card-text">{{authority.autorizacion}}</h6>
                     </div>
                 </div>
-                <div class="card mb-3">
+                <!-- <div class="card mb-3">
                     <div class="card-body">
                         <div class="px-xl-3">
 
@@ -96,7 +96,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
