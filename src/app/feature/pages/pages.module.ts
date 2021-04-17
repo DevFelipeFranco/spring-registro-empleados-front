@@ -40,6 +40,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { ListarClientesComponent } from './clientes/listar-clientes/listar-clientes.component';
 import { ListarUsuariosComponent } from './perfil/listar-usuarios/listar-usuarios.component';
 import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/editar-crear-usuario.component';
+import { EditarCrearClienteComponent } from './clientes/editar-crear-cliente/editar-crear-cliente.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/edita
     ClientesComponent,
     ListarClientesComponent,
     ListarUsuariosComponent,
-    EditarCrearUsuarioComponent
+    EditarCrearUsuarioComponent,
+    EditarCrearClienteComponent
   ],
   imports: [
     CommonModule,

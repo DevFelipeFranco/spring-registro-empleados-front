@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Cliente } from 'src/app/core/models/cliente.model';
@@ -15,6 +15,7 @@ export class ListarClientesComponent implements OnInit {
   public clientes: Cliente[];
   displayedColumns: string[] = ['nombreCliente', 'nombreProyecto', 'avanceProyecto', 'cantidadTrabajadores', 'editar', 'eliminar'];
   dataSource;
+  @Output() editarCliente = new EventEmitter<Cliente>();
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -36,5 +37,10 @@ export class ListarClientesComponent implements OnInit {
     this.dataSource = new MatTableDataSource(cliente);
     this.dataSource.sort = this.sort;
     console.log(this.dataSource);
+  }
+
+  onEditarCliente(cliente: Cliente): void {
+    console.log('Esta es la persona seleccionada:', cliente);
+    this.editarCliente.emit(cliente);
   }
 }

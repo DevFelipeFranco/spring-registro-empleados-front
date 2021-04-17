@@ -1,0 +1,83 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-rose">
+                        <div class="card-icon">
+                            <i class="material-icons">perm_identity</i>
+                        </div>
+                        <h4 class="card-title">
+                            {{titulo}}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="clienteFormulario">
+                            <table class="example-full-width" cellspacing="0">
+                                <!-- ################## ROW #1 ##################-->
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Nombre del Proyecto</mat-label>
+                                            <input matInput type="text" formControlName="nombreProyecto" id="nombreProyecto">
+                                            <mat-error *ngIf="hasError('nombreProyecto', 'required')">El nombre del Proyecto es requerido</mat-error>
+                                        </mat-form-field>
+                                    </td>
+
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Nombre del Clliente</mat-label>
+                                            <input matInput type="text" formControlName="nombreCliente" id="nombreCliente">
+                                            <mat-error *ngIf="hasError('nombreCliente', 'required')">El Nombre del Cliente es requerido</mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+
+                                <!-- ################## ROW #2 ##################-->
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Estado del proyecto</mat-label>
+                                            <input matInput type="text" formControlName="estadoProyecto" id="estadoProyecto">
+                                            <mat-error *ngIf="hasError('estadoProyecto', 'required')">El Primer Nombre es requerido</mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Descripcion</mat-label>
+                                            <input matInput type="text" formControlName="descripcion" id="descriocion">
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Cantidad de Trabajadores</mat-label>
+                                            <input matInput type="text" formControlName="cantidadTrabajadores" id="cantidadTrabajadores">
+                                            <mat-error *ngIf="hasError('cantidadTrabajadores', 'required')">El Primer Apellido es requerido</mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Avance del Proyecto</mat-label>
+                                            <input matInput type="text" formControlName="avanceProyecto" id="avanceProyecto">
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <div class="action-containt">
+                                <!-- <button mat-raised-button color="primary" (click)="onCrearPersona()" *ngIf="crear; else editar" [disabled]="personaFormulario.invalid">Crear</button>
+                                <ng-template #editar>
+                                    <button mat-raised-button color="primary" (click)="onEditarPersona()" [disabled]="personaFormulario.invalid">Editar</button>
+
+                                </ng-template> -->
+                                <button type="button" mat-raised-button routerLink='/dashboard/persona' color="warn">Cancelar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

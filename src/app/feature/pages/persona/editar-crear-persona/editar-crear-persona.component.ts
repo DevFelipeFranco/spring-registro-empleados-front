@@ -7,6 +7,8 @@ import { PersonaService } from '../../../../core/services/persona/persona.servic
 import { TipoDocumento } from '../../../../core/models/tipoDocumento.model';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { Genero } from '../../../../core/models/genero.model';
+import { ClienteService } from 'src/app/core/services/cliente/cliente.service';
+import { Cliente } from 'src/app/core/models/cliente.model';
 
 @Component({
   selector: 'app-editar-persona',
@@ -19,13 +21,16 @@ export class EditarCrearPersonaComponent implements OnInit {
   persona: Persona;
   tipoDocumentos: TipoDocumento[];
   generos: Genero[];
+  proyectos: Cliente[];
   titulo: string;
   crear: boolean;
+  public isFormProyecto = false;
   public maxDate = new Date();
 
   constructor(private readonly fb: FormBuilder,
               private readonly persoaService: PersonaService,
               private readonly authService: AuthService,
+              private readonly clienteService: ClienteService,
               private readonly router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.persona = navigation?.extras?.state?.value;
@@ -39,6 +44,7 @@ export class EditarCrearPersonaComponent implements OnInit {
     this.editarOCrearPersona(this.persona);
     this.tipoDocumento();
     this.consultarGenero();
+    this.consultarProyecto();
   }
 
   iniciarFormulario(): void {
@@ -53,7 +59,8 @@ export class EditarCrearPersonaComponent implements OnInit {
       direccion: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       edad: [{ value: '', disabled: true }, Validators.required],
-      genero: ['', Validators.required]
+      genero: ['', Validators.required],
+      proyecto: ['']
     });
   }
 
@@ -63,6 +70,10 @@ export class EditarCrearPersonaComponent implements OnInit {
 
   consultarGenero(): void {
     this.persoaService.generos().subscribe(generos => this.generos = generos);
+  }
+
+  consultarProyecto(): void {
+    this.clienteService.consultarClientes().subscribe((proyectos: Cliente[]) => this.proyectos = proyectos);
   }
 
   onEditarPersona(): void {
@@ -141,6 +152,10 @@ export class EditarCrearPersonaComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  showFormProyecto(): void {
+    console.log(this.isFormProyecto);
   }
 
   public hasError = (controlName: string, errorName: string) => {

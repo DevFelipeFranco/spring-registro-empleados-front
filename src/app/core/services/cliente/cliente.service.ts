@@ -12,7 +12,7 @@ export class ClienteService {
 
   constructor(private readonly httpClient: HttpClient) { }
 
-  consultarClientes(esActivo: boolean): Observable<Cliente[] | HttpErrorResponse> {
+  consultarClientes(esActivo: boolean = true): Observable<Cliente[] | HttpErrorResponse> {
     let params = new HttpParams();
     params = params.append('esActivo', esActivo.toString());
     return this.httpClient.get<Cliente[]>(this.API_URL, { params });

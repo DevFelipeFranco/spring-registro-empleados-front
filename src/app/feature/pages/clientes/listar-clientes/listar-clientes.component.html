@@ -18,13 +18,16 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="avanceProyecto">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Avance del Proyecto </th>
-        <td mat-cell *matCellDef="let element"> {{element.avanceProyecto}} {{element.segundoNombre}} {{element.primerApellido}} {{element.segundoApellido}} </td>
+        <td mat-cell *matCellDef="let element" style="text-align: center;">
+            <mat-progress-bar mode="determinate" [value]="element.avanceProyecto"></mat-progress-bar>
+            {{element.avanceProyecto}}
+        </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="cantidadTrabajadores">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad de Trabajadores </th>
-        <td mat-cell *matCellDef="let element"> {{element.cantidadTrabajadores}} </td>
+        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.cantidadTrabajadores}} </td>
     </ng-container>
 
     <ng-container matColumnDef="editar">
@@ -36,7 +39,7 @@
         </td> -->
 
         <td mat-cell *matCellDef="let element">
-            <button mat-raised-button type="button" matTooltip="Edit Task" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onEditarPersona(element)">
+            <button mat-raised-button type="button" matTooltip="Edit Task" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onEditarCliente(element)">
                 <i class="material-icons">edit</i>
             </button>
         </td>

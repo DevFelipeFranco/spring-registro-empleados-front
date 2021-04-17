@@ -106,6 +106,17 @@
                                             </mat-radio-button>
                                         </mat-radio-group>
                                     </td>
+
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Proyecto</mat-label>
+                                            <mat-select formControlName="proyecto">
+                                                <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto">
+                                                    {{proyecto.nombreProyecto}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </td>
                                 </tr>
                             </table>
 
@@ -125,3 +136,11 @@
         </div>
     </div>
 </div>
+<div class="more-actions">
+    <button mat-button color="primary" (click)="showFormProyecto()">
+        <i class="material-icons">business</i> 
+        Primary
+    </button>
+</div>
+
+<mat-divider [inset]="true"></mat-divider>
