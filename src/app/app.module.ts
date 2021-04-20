@@ -1,6 +1,10 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs, 'es');
 
 import { AuthenticationGuard } from './core/guards/authentication.guard';
 import { NotificationModule } from './shared/notification/notification.module';
@@ -36,6 +40,10 @@ import { NotificationService } from './shared/notification/services/notification
       useClass: AuthInterceptorService,
       // useClass: AuthInterceptor,
       multi: true
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'es'
     }
   ],
   bootstrap: [AppComponent]

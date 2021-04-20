@@ -35,7 +35,8 @@ export class EditarCrearClienteComponent implements OnInit {
       estadoProyecto: ['', Validators.required],
       descripcion: [''],
       cantidadTrabajadores: ['', Validators.required],
-      avanceProyecto: ['']
+      avanceProyecto: [''],
+      cantidadSprint: [''],
     });
   }
 

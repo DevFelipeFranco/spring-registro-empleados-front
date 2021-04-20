@@ -17,4 +17,8 @@ export class ClienteService {
     params = params.append('esActivo', esActivo.toString());
     return this.httpClient.get<Cliente[]>(this.API_URL, { params });
   }
+
+  eliminarCliente(idCliente: number): Observable<any> {
+    return this.httpClient.delete(`${this.API_URL}/${idCliente}`);
+  }
 }

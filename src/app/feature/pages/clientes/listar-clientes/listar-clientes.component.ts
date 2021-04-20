@@ -43,4 +43,14 @@ export class ListarClientesComponent implements OnInit {
     console.log('Esta es la persona seleccionada:', cliente);
     this.editarCliente.emit(cliente);
   }
+
+  onEliminarCliente(cliente: Cliente): void {
+    console.log('Eliminara al cliente', cliente.idCliente);
+    this.clienteService.eliminarCliente(cliente.idCliente).subscribe(info => {
+      console.log(info);
+      const listaClientesActualizada = this.dataSource.data.filter(client => cliente.idCliente !== client.idCliente);
+      this.cargarTabla(listaClientesActualizada);
+      console.log('Asi quedo la tabla', this.dataSource);
+    });
+  }
 }

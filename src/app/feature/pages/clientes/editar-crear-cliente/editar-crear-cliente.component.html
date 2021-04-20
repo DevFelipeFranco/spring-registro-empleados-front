@@ -36,17 +36,23 @@
                                 <!-- ################## ROW #2 ##################-->
                                 <tr>
                                     <td>
-                                        <mat-form-field class="example-full-width">
+                                        <!-- <mat-form-field class="example-full-width">
                                             <mat-label>Estado del proyecto</mat-label>
                                             <input matInput type="text" formControlName="estadoProyecto" id="estadoProyecto">
                                             <mat-error *ngIf="hasError('estadoProyecto', 'required')">El Primer Nombre es requerido</mat-error>
-                                        </mat-form-field>
+                                        </mat-form-field> -->
+                                        <mat-radio-group name="estadoProyecto" formControlName="estadoProyecto">
+                                            <label>Estado del proyecto</label>
+                                            <mat-radio-button name="activo" [value]="true" style="margin: 10px">Activo</mat-radio-button>
+                                            <mat-radio-button name="inactivo" [value]="false" style="margin: 10px">Inactivo</mat-radio-button>
+                                        </mat-radio-group>
                                     </td>
                                     <td>
                                         <mat-form-field class="example-full-width">
-                                            <mat-label>Descripcion</mat-label>
-                                            <input matInput type="text" formControlName="descripcion" id="descriocion">
+                                            <mat-label>Avance del Proyecto</mat-label>
+                                            <input matInput type="text" formControlName="avanceProyecto" id="avanceProyecto">
                                         </mat-form-field>
+
                                     </td>
                                     <td>
                                         <mat-form-field class="example-full-width">
@@ -55,14 +61,23 @@
                                             <mat-error *ngIf="hasError('cantidadTrabajadores', 'required')">El Primer Apellido es requerido</mat-error>
                                         </mat-form-field>
                                     </td>
+                                </tr>
+
+                                <!-- ################## ROW #3 ##################-->
+                                <tr>
                                     <td>
                                         <mat-form-field class="example-full-width">
-                                            <mat-label>Avance del Proyecto</mat-label>
-                                            <input matInput type="text" formControlName="avanceProyecto" id="avanceProyecto">
+                                            <mat-label>Descripcion</mat-label>
+                                            <input matInput type="text" formControlName="descripcion" id="descriocion">
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Descripcion</mat-label>
+                                            <input matInput type="number" formControlName="cantidadSprint" id="cantidadSprint">
                                         </mat-form-field>
                                     </td>
                                 </tr>
-
                             </table>
 
                             <div class="action-containt">

@@ -5,6 +5,8 @@ import { DetailInformationProfileComponent } from '../detail-information-profile
 import { AuthService } from '../../core/services/auth/auth.service';
 import { NotificationService } from '../notification/services/notification.service';
 import { NotificationType } from 'src/app/core/enum/notification-type.enum';
+import { throwError } from 'rxjs';
+import { DialogWarningComponent } from '../../feature/pages/perfil/dialog-warning/dialog-warning.component';
 
 @Component({
   selector: 'app-card-preview-profile',
@@ -16,8 +18,9 @@ export class CardPreviewProfileComponent implements OnInit {
   @Input() public usuario: Usuario;
   @Output() editarUsuario = new EventEmitter<Usuario>();
 
+
   constructor(public dialog: MatDialog,
-              private readonly authService: AuthService,
+              public readonly authService: AuthService,
               private readonly notificationService: NotificationService) { }
 
   ngOnInit(): void {
@@ -37,14 +40,37 @@ export class CardPreviewProfileComponent implements OnInit {
 
   onDeleteUsuario(usuario: Usuario): void {
     if (usuario.usuario === this.authService.getJwtUsername()) {
-      this.notificationService.notify(NotificationType.WARNING, 'No puedes eliminar tu propio usaurio');
+      this.notificationService.notify(NotificationType.WARNING, 'No puedes eliminar tu propio usuario');
       return;
     }
 
     this.authService.elimiarUsuarioPorId(usuario.idUsuario).subscribe((mensaje: string) => {
-      this.notificationService.notify(NotificationType.SUCCESS, mensaje);
-    }, error => {
-      this.notificationService.notify(NotificationType.ERROR, error.error.message);
-    })
+      this.notificationService.notify(NotificationType.SUCCESS, 'Se elimino con exito el usuario: ' + usuario.usuario);
+    },
+      error => {
+        const data = {
+          usuarioActual: usuario,
+          error
+        };
+
+        const dialogReg = this.dialog.open(DialogWarningComponent, {
+          width: '50%',
+          data
+        });
+
+        dialogReg.afterClosed().subscribe((usuarioEliminar: string) => {
+          console.log('Usuairo a eliminar: ', usuarioEliminar);
+          this.authService.eliminarYTransferirUsuario(usuario.idUsuario, usuarioEliminar).subscribe((mensaje: string) => {
+            this.notificationService.notify(NotificationType.SUCCESS, 'Se elimino con exito el usuario: ' + usuario.usuario);
+          }, error2 => {
+            this.notificationService.notify(NotificationType.ERROR, error2.error.message);
+          });
+        });
+
+
+        this.notificationService.notify(NotificationType.ERROR, error.error.message);
+        throwError(error);
+      }
+    );
   }
 }

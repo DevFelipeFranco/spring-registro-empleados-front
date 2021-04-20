@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{data.usuarioActual.nombres}}</h1>
+<div mat-dialog-content>
+    <p>{{data.error.error.message}}</p>
+    <!-- <mat-form-field> -->
+    <!-- <mat-label>Favorite Animal</mat-label> -->
+    <!-- <input matInput [(ngModel)]="data.animal"> -->
+    <!-- </mat-form-field> -->
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Asignar nuevo usuario</mat-label>
+            <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option.usuario">
+                    {{option.nombres}} {{option.apellidos}} ({{option.usuario}})
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="myControl.value" cdkFocusInitial>Ok</button>
+</div>

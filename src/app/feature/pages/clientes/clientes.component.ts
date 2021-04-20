@@ -15,6 +15,7 @@ export class ClientesComponent implements OnInit {
     }
   };
 
+  public fechaActual = new Date();
   constructor(private readonly router: Router) { }
 
   ngOnInit(): void {

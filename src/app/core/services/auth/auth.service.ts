@@ -7,6 +7,7 @@ import { filter, map, tap } from 'rxjs/operators';
 import { Login, LoginResponse, RegistarUsuario, Usuario } from '../../models/usuario.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Rol } from '../../models/rol.model';
+import { Role } from '../../enum/rol.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class AuthService {
         this.localStorage.store('username', data.usuario.usuario);
         this.localStorage.store('refreshToken', data.refreshToken);
         this.localStorage.store('expiresAt', data.expiresAt);
-
+        this.localStorage.store('rol', data.usuario.roles[0].descripcion);
         return true;
       }));
   }
@@ -58,6 +59,10 @@ export class AuthService {
     return this.httpClient.delete<string>(`${this.API_URL}/eliminarUsuario/${idUsuario}`);
   }
 
+  eliminarYTransferirUsuario(idUsuario: number, usuario: string): Observable<string | HttpErrorResponse> {
+    return this.httpClient.delete<string>(`${this.API_URL}/eliminarTransferirUsuario/${idUsuario}/${usuario}`);
+  }
+
   getJwtToken(): any {
     return this.localStorage.retrieve('authenticationToken');
   }
@@ -72,6 +77,22 @@ export class AuthService {
 
   getIdUsuario(): number {
     return this.localStorage.retrieve('idUsuario');
+  }
+
+  getUserRoleCache(): string {
+    return this.localStorage.retrieve('rol');
+  }
+
+  public get isAdmin(): boolean {
+    return this.getUserRoleCache() === Role.ADMIN || this.getUserRoleCache() === Role.SUPER_ADMIN;
+  }
+
+  public get isManager(): boolean {
+    return this.isAdmin || this.getUserRoleCache() === Role.MANAGER;
+  }
+
+  public get isAdminOrManager(): boolean {
+    return this.isAdmin || this.isManager;
   }
   // ############### PRUEBA SEGUN TUTORIAL
 

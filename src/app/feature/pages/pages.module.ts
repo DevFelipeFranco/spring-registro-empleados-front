@@ -22,6 +22,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { PagesComponent } from './pages.component';
@@ -41,6 +43,7 @@ import { ListarClientesComponent } from './clientes/listar-clientes/listar-clien
 import { ListarUsuariosComponent } from './perfil/listar-usuarios/listar-usuarios.component';
 import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/editar-crear-usuario.component';
 import { EditarCrearClienteComponent } from './clientes/editar-crear-cliente/editar-crear-cliente.component';
+import { DialogWarningComponent } from './perfil/dialog-warning/dialog-warning.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import { EditarCrearClienteComponent } from './clientes/editar-crear-cliente/edi
     ListarClientesComponent,
     ListarUsuariosComponent,
     EditarCrearUsuarioComponent,
-    EditarCrearClienteComponent
+    EditarCrearClienteComponent,
+    DialogWarningComponent
   ],
   imports: [
     CommonModule,
@@ -80,7 +84,9 @@ import { EditarCrearClienteComponent } from './clientes/editar-crear-cliente/edi
     MatCheckboxModule,
     MatProgressBarModule,
     MatSortModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule,
+    MatDialogModule
   ],
   providers: [
     {

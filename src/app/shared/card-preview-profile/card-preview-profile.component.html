@@ -14,12 +14,12 @@
                         <p><span [hidden]="!usuario.estado" class="badge badge-success">Activo</span></p>
                         <p><span [hidden]="usuario.estado" class="badge badge-danger">Incativo</span></p>
                         <a mat-button style="color: inherit;" (click)="onEditarUsuario(usuario)">
-                            <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16 material-icons ">edit</i>
+                            <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16 material-icons" [hidden]="!authService.isAdmin">edit</i>
                         </a>
                         <a mat-button (click)="openModal() " style="color: inherit; ">
                             <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16 material-icons ">visibility</i>
                         </a>
-                        <a mat-button style="color: inherit;" (click)="onDeleteUsuario(usuario)">
+                        <a mat-button style="color: inherit;" (click)="onDeleteUsuario(usuario)" [hidden]="!authService.isAdmin">
                             <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16 material-icons ">delete</i>
                         </a>
                     </div>
