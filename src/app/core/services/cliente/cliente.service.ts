@@ -18,6 +18,14 @@ export class ClienteService {
     return this.httpClient.get<Cliente[]>(this.API_URL, { params });
   }
 
+  crearCliente(cliente: Cliente): Observable<Cliente | HttpErrorResponse> {
+    return this.httpClient.post<Cliente>(`${this.API_URL}`, cliente);
+  }
+
+  actualizarCliente(cliente: Cliente): Observable<Cliente | HttpErrorResponse> {
+    return this.httpClient.put<Cliente>(this.API_URL, cliente);
+  }
+
   eliminarCliente(idCliente: number): Observable<any> {
     return this.httpClient.delete(`${this.API_URL}/${idCliente}`);
   }

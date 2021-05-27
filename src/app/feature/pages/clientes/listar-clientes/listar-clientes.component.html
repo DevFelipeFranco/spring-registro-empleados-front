@@ -20,7 +20,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Avance del Proyecto </th>
         <td mat-cell *matCellDef="let element" style="text-align: center;">
             <mat-progress-bar mode="determinate" [value]="element.avanceProyecto"></mat-progress-bar>
-            {{element.avanceProyecto}}
+            {{element.avanceProyecto / 100 | percent:'1.2-5' }}
         </td>
     </ng-container>
 

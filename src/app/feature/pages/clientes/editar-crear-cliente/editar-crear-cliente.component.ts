@@ -1,7 +1,8 @@
+import { Cliente } from './../../../../core/models/cliente.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Cliente } from 'src/app/core/models/cliente.model';
+import { ClienteService } from '../../../../core/services/cliente/cliente.service';
 
 @Component({
   selector: 'app-editar-crear-cliente',
@@ -16,6 +17,7 @@ export class EditarCrearClienteComponent implements OnInit {
   crear: boolean;
 
   constructor(private readonly fb: FormBuilder,
+              private readonly clienteService: ClienteService,
               private readonly router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.cliente = navigation?.extras?.state?.value;
@@ -52,6 +54,29 @@ export class EditarCrearClienteComponent implements OnInit {
       this.titulo = 'Crear Persona';
 
     }
+  }
+
+  onCrearCliente(): void {
+    console.log('Se va a crear la persona');
+    this.cliente = this.clienteFormulario.value;
+    console.log(this.cliente);
+
+    this.clienteService.crearCliente(this.cliente).subscribe((clienteCreado: Cliente) =>
+      console.log('Se creo el cliente', clienteCreado.nombreCliente));
+  }
+
+  onEditarCliente(): void {
+    this.cliente = {
+      idCliente: this.cliente.idCliente,
+      avanceProyecto: this.clienteFormulario.get('avanceProyecto').value,
+      cantidadTrabajadores: this.clienteFormulario.get('cantidadTrabajadores').value,
+      descripcion: this.clienteFormulario.get('descripcion').value,
+      estadoProyecto: this.clienteFormulario.get('estadoProyecto').value,
+      nombreCliente: this.clienteFormulario.get('nombreCliente').value,
+      nombreProyecto: this.clienteFormulario.get('nombreProyecto').value,
+    };
+    console.log(this.cliente);
+    this.clienteService.actualizarCliente(this.cliente).subscribe(clienteActualizada => console.log(clienteActualizada));
   }
 
   public hasError = (controlName: string, errorName: string) => {
