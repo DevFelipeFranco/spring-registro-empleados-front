@@ -1,6 +1,8 @@
 import { Persona } from './../../../../core/models/persona.model';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { PersonaService } from 'src/app/core/services/persona/persona.service';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-lista-persona',
@@ -13,7 +15,8 @@ export class ListaPersonaComponent implements OnInit {
   @Output() editarPersona = new EventEmitter<Persona>();
 
   displayedColumns: string[] = ['tipoDocumento', 'identificacion', 'nombres', 'fechaNacimiento', 'edad', 'email', 'direccion', 'editar', 'eliminar'];
-  dataSource: Persona[];
+  dataSource;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private readonly personaService: PersonaService) { }
 
@@ -29,7 +32,8 @@ export class ListaPersonaComponent implements OnInit {
   }
 
   cargarTabla(personas: Persona[]): void {
-    this.dataSource = personas;
+    this.dataSource = new MatTableDataSource(personas);
+    this.dataSource.sort = this.sort;
     console.log(this.dataSource);
   }
 
