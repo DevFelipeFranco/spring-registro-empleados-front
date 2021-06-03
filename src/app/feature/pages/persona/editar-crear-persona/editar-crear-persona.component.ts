@@ -1,5 +1,6 @@
+import { Cliente } from './../../../../core/models/cliente.model';
 import { Usuario } from './../../../../core/models/usuario.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Persona } from 'src/app/core/models/persona.model';
@@ -8,7 +9,6 @@ import { TipoDocumento } from '../../../../core/models/tipoDocumento.model';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { Genero } from '../../../../core/models/genero.model';
 import { ClienteService } from 'src/app/core/services/cliente/cliente.service';
-import { Cliente } from 'src/app/core/models/cliente.model';
 
 @Component({
   selector: 'app-editar-persona',
@@ -24,6 +24,7 @@ export class EditarCrearPersonaComponent implements OnInit {
   proyectos: Cliente[];
   titulo: string;
   crear: boolean;
+  clienteSeleccionado: Cliente | undefined;
   public isFormProyecto = false;
   public maxDate = new Date();
 
@@ -91,7 +92,8 @@ export class EditarCrearPersonaComponent implements OnInit {
       edad: this.personaFormulario.get('edad').value,
       usuario: this.persona.usuario,
       genero: this.personaFormulario.get('genero').value,
-      fechaIngreso: new Date(this.persona.fechaIngreso)
+      fechaIngreso: new Date(this.persona.fechaIngreso),
+      proyecto: this.clienteSeleccionado
     };
     this.persoaService.actualizarPersona(this.persona).subscribe(personaActualizada => console.log(personaActualizada));
   }
@@ -154,8 +156,20 @@ export class EditarCrearPersonaComponent implements OnInit {
     }
   }
 
+  compararProyecto(td1: Cliente, td2: Cliente): boolean {
+    return td1 && td2 ? td1.idCliente === td2.idCliente : td1 === td2;
+  }
+
+  onChangeSelect(event: any): void {
+    console.log(event);
+    this.isFormProyecto = true;
+    this.clienteSeleccionado = event.value;
+  }
+
   showFormProyecto(): void {
-    console.log(this.isFormProyecto);
+    if (!this.isFormProyecto) {
+      this.consultarProyecto();
+    }
   }
 
   public hasError = (controlName: string, errorName: string) => {

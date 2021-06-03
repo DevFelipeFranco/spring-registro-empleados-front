@@ -109,8 +109,8 @@
 
                                     <td>
                                         <mat-form-field class="example-full-width">
-                                            <mat-label>Proyecto</mat-label>
-                                            <mat-select formControlName="proyecto">
+                                            <mat-label>Seleccione un Proyecto</mat-label>
+                                            <mat-select [compareWith]="compararProyecto" formControlName="proyecto" (selectionChange)="onChangeSelect($event)">
                                                 <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto">
                                                     {{proyecto.nombreProyecto}}
                                                 </mat-option>
@@ -136,11 +136,47 @@
         </div>
     </div>
 </div>
-<div class="more-actions">
-    <button mat-button color="primary" (click)="showFormProyecto()">
-        <i class="material-icons">business</i> 
-        Primary
-    </button>
-</div>
-
 <mat-divider [inset]="true"></mat-divider>
+
+<div class="container bootstrap snippets bootdey" [hidden]="!isFormProyecto">
+
+    <div class="col">
+        <div class="row">
+            <div class="col mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="e-profile">
+                            <div class="row">
+                                <div class="profile-info col-md-12">
+
+                                    <div class="panel">
+                                        <div class="panel-body bio-graph-info">
+                                            <h1>Detalle</h1>
+                                            <div class="row">
+                                                <div class="bio-row">
+                                                    <p><span>Nombre proyecto </span>: {{clienteSeleccionado?.nombreProyecto}}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Nombre cliente </span>: {{clienteSeleccionado?.nombreCliente}}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Avance del proyecto </span>: {{clienteSeleccionado?.avanceProyecto}}%</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Cantidad de trabajadores </span>: {{clienteSeleccionado?.cantidadTrabajadores}}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Descripcion </span>: {{clienteSeleccionado?.descripcion}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

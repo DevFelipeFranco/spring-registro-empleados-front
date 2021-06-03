@@ -58,8 +58,9 @@
                                     <td>
                                         <mat-form-field class="example-full-width">
                                             <mat-label>Cantidad de Trabajadores</mat-label>
-                                            <input matInput type="text" formControlName="cantidadTrabajadores" id="cantidadTrabajadores" required>
-                                            <mat-error *ngIf="hasError('cantidadTrabajadores', 'required')">El Primer Apellido es requerido</mat-error>
+                                            <input matInput type="text" formControlName="cantidadTrabajadores" id="cantidadTrabajadores" required pattern="[0-9]*" digitOnly>
+                                            <mat-error *ngIf="hasError('cantidadTrabajadores', 'required')">La cantidad de trabajdores es requerido</mat-error>
+                                            <mat-error *ngIf="hasError('cantidadTrabajadores', 'pattern')">Solo se permiten números enteros mayores a cero (0)</mat-error>
                                         </mat-form-field>
                                     </td>
                                 </tr>
@@ -75,7 +76,9 @@
                                     <td>
                                         <mat-form-field class="example-full-width">
                                             <mat-label>Cantidad de Sprint</mat-label>
-                                            <input matInput type="number" formControlName="cantidadSprint" id="cantidadSprint" required>
+                                            <input matInput type="text" formControlName="cantidadSprint" id="cantidadSprint" required pattern="[0-9]*" inputmode="numeric" digitOnly>
+                                            <mat-error *ngIf="hasError('cantidadSprint', 'required')">La cantidad de sprint es requerido</mat-error>
+                                            <mat-error *ngIf="hasError('cantidadSprint', 'pattern')">Solo se permiten números enteros mayores a cero (0)</mat-error>
                                         </mat-form-field>
                                     </td>
                                 </tr>
