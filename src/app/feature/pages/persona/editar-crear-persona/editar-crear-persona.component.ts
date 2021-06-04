@@ -9,6 +9,9 @@ import { TipoDocumento } from '../../../../core/models/tipoDocumento.model';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { Genero } from '../../../../core/models/genero.model';
 import { ClienteService } from 'src/app/core/services/cliente/cliente.service';
+import { NotificationService } from '../../../../shared/notification/services/notification.service';
+import { NotificationType } from 'src/app/core/enum/notification-type.enum';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-editar-persona',
@@ -32,6 +35,7 @@ export class EditarCrearPersonaComponent implements OnInit {
               private readonly persoaService: PersonaService,
               private readonly authService: AuthService,
               private readonly clienteService: ClienteService,
+              private readonly notificationService: NotificationService,
               private readonly router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.persona = navigation?.extras?.state?.value;
@@ -95,7 +99,13 @@ export class EditarCrearPersonaComponent implements OnInit {
       fechaIngreso: new Date(this.persona.fechaIngreso),
       proyecto: this.clienteSeleccionado
     };
-    this.persoaService.actualizarPersona(this.persona).subscribe(personaActualizada => console.log(personaActualizada));
+    this.persoaService.actualizarPersona(this.persona).subscribe(personaActualizada => {
+      console.log(personaActualizada);
+      this.notificationService.notify(NotificationType.SUCCESS, 'Se actualizo la información con exito'.toUpperCase());
+    }, error => {
+      this.notificationService.notify(NotificationType.ERROR, error.toUpperCase());
+      throwError(error);
+    });
   }
 
   onCrearPersona(): void {
@@ -123,11 +133,17 @@ export class EditarCrearPersonaComponent implements OnInit {
       email: this.personaFormulario.get('email').value,
       edad: this.personaFormulario.get('edad').value,
       usuario,
-      genero: this.personaFormulario.get('genero').value
+      genero: this.personaFormulario.get('genero').value,
+      proyecto: this.clienteSeleccionado
     };
 
-    this.persoaService.crearPersona(this.persona).subscribe(personaCreada =>
-      console.log('Se creo a la persona', this.persona.primerNombre));
+    this.persoaService.crearPersona(this.persona).subscribe(personaCreada => {
+      console.log('Se creo a la persona', this.persona.primerNombre);
+      this.notificationService.notify(NotificationType.SUCCESS, `Se creao la persona: ${this.persona.primerNombre} ${this.persona.primerApellido}`.toUpperCase());
+    }, error => {
+      this.notificationService.notify(NotificationType.SUCCESS, error.toUpperCase());
+      throwError(error);
+    });
   }
 
   editarOCrearPersona(persona: Persona): void {

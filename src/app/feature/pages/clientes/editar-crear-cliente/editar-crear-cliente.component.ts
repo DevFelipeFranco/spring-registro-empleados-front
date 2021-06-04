@@ -84,6 +84,7 @@ export class EditarCrearClienteComponent implements OnInit {
       estadoProyecto: this.clienteFormulario.get('estadoProyecto').value,
       nombreCliente: this.clienteFormulario.get('nombreCliente').value,
       nombreProyecto: this.clienteFormulario.get('nombreProyecto').value,
+      cantidadSprint: this.clienteFormulario.get('cantidadSprint').value
     };
     console.log(this.cliente);
     this.clienteService.actualizarCliente(this.cliente).subscribe(clienteActualizada => {
