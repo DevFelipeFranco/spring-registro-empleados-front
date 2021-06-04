@@ -3,7 +3,6 @@
         <mat-icon fontSet="fas" fontIcon="fa-user-plus"></mat-icon>
         <span>Registrar Persona</span>
     </a>
-
 </div>
 
 <div class="main-content">
@@ -15,9 +14,24 @@
                         <h4 class="card-title">Lista de Empleados</h4>
                         <!-- <p class="card-category">Sub Titulo</p> -->
                     </div>
+                    <div class="card-body table-responsive">
+                        <mat-tab-group>
+                            <mat-tab label="Personas Activas">
+                                <!-- <app-listar-clientes [esActivo]="true" (editarCliente)="editarCliente($event)"></app-listar-clientes> -->
+                                <app-lista-persona [esActivo]="true" (editarPersona)="editarPersona($event)"></app-lista-persona>
+                            </mat-tab>
+                            <mat-tab label="Historial de Personas">
+                                <!-- <app-listar-clientes [esActivo]="false" (editarCliente)="editarCliente($event)"></app-listar-clientes> -->
+                                <app-lista-persona [esActivo]="false" (editarPersona)="editarPersona($event)"></app-lista-persona>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+
+
+                    <!-- 
                     <div class="card-body">
                         <app-lista-persona (editarPersona)="editarPersona($event)"></app-lista-persona>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

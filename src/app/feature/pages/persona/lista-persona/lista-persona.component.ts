@@ -1,5 +1,5 @@
 import { Persona } from './../../../../core/models/persona.model';
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { PersonaService } from 'src/app/core/services/persona/persona.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ListaPersonaComponent implements OnInit {
 
+  @Input() esActivo: boolean;
   personas: Persona[];
   @Output() editarPersona = new EventEmitter<Persona>();
 
@@ -25,7 +26,7 @@ export class ListaPersonaComponent implements OnInit {
   }
 
   consultarPersona(): void {
-    this.personaService.registrarUsuario().subscribe((personas: Persona[]) => {
+    this.personaService.consultarUsuario(this.esActivo).subscribe((personas: Persona[]) => {
       this.personas = personas;
       this.cargarTabla(this.personas);
     });
@@ -46,7 +47,7 @@ export class ListaPersonaComponent implements OnInit {
     console.log('Eliminara a la persona', persona.idPersona);
     this.personaService.eliminarPersona(persona.idPersona).subscribe(info => {
       console.log(info);
-      const listaPersonasActualizada = this.dataSource.filter(person => persona.idPersona !== person.idPersona);
+      const listaPersonasActualizada = this.dataSource.data.filter(person => persona.idPersona !== person.idPersona);
       this.cargarTabla(listaPersonasActualizada);
       console.log('Asi quedo la tabla', this.dataSource);
     });

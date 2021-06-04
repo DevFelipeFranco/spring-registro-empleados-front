@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Persona } from '../../models/persona.model';
 import { Observable } from 'rxjs';
@@ -16,8 +16,10 @@ export class PersonaService {
 
   constructor(private readonly httpClient: HttpClient) { }
 
-  registrarUsuario(): Observable<Persona[] | HttpErrorResponse> {
-    return this.httpClient.get<Persona[]>(this.API_URL);
+  consultarUsuario(esActivo: boolean = true): Observable<Persona[] | HttpErrorResponse> {
+    let params = new HttpParams();
+    params = params.append('esActivo', esActivo.toString());
+    return this.httpClient.get<Persona[]>(this.API_URL, {params});
   }
 
   tipoDocumentos(): Observable<TipoDocumento[]> {
