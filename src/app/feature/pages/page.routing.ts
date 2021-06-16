@@ -11,6 +11,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/editar-crear-usuario.component';
 import { AuthenticationGuard } from 'src/app/core/guards/authentication.guard';
 import { EditarCrearClienteComponent } from './clientes/editar-crear-cliente/editar-crear-cliente.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'cliente', component: ClientesComponent },
       { path: 'cliente/editar-crear-cliente', component: EditarCrearClienteComponent },
       { path: 'info-contrato', component: InformacionContratoComponent },
+      { path: 'reportes', component: ReportComponent },
     ]
   }
 ];

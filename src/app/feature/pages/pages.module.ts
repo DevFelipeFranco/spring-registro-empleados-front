@@ -44,6 +44,7 @@ import { ListarUsuariosComponent } from './perfil/listar-usuarios/listar-usuario
 import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/editar-crear-usuario.component';
 import { EditarCrearClienteComponent } from './clientes/editar-crear-cliente/editar-crear-cliente.component';
 import { DialogWarningComponent } from './perfil/dialog-warning/dialog-warning.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { DialogWarningComponent } from './perfil/dialog-warning/dialog-warning.c
     ListarUsuariosComponent,
     EditarCrearUsuarioComponent,
     EditarCrearClienteComponent,
-    DialogWarningComponent
+    DialogWarningComponent,
+    ReportComponent
   ],
   imports: [
     CommonModule,
