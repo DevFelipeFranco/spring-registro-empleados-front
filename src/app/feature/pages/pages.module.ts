@@ -45,6 +45,7 @@ import { EditarCrearUsuarioComponent } from './perfil/editar-crear-usuario/edita
 import { EditarCrearClienteComponent } from './clientes/editar-crear-cliente/editar-crear-cliente.component';
 import { DialogWarningComponent } from './perfil/dialog-warning/dialog-warning.component';
 import { ReportComponent } from './report/report.component';
+import { DeletePersonaDialogComponent } from './persona/delete-persona-dialog/delete-persona-dialog.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ReportComponent } from './report/report.component';
     EditarCrearUsuarioComponent,
     EditarCrearClienteComponent,
     DialogWarningComponent,
-    ReportComponent
+    ReportComponent,
+    DeletePersonaDialogComponent
   ],
   imports: [
     CommonModule,

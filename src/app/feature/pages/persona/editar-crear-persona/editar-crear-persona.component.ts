@@ -150,12 +150,12 @@ export class EditarCrearPersonaComponent implements OnInit {
     if (persona) {
       console.log('Se va a editar la informacion de la persona');
       this.crear = false;
-      this.titulo = 'Editar Persona';
+      this.titulo = 'Editar Empleado';
       this.personaFormulario.patchValue(this.persona);
     } else {
       console.log('Se creara una nueva persona');
       this.crear = true;
-      this.titulo = 'Crear Persona';
+      this.titulo = 'Crear Empleado';
 
     }
   }

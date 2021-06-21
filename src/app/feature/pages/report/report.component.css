@@ -1,0 +1,28 @@
+.example-card {
+    max-width: 400px;
+}
+
+.header-image-people {
+    background-image: url('./../../../../assets/img/report/people.gif');
+    background-size: cover;
+}
+
+.header-image-withoud-project {
+    background-image: url('./../../../../assets/img/report/withoud-project.gif');
+    background-size: cover;
+}
+
+.header-image-user-inactive {
+    background-image: url('./../../../../assets/img/report/user-inactive.gif');
+    background-size: cover;
+}
+
+.header-image-clint-inactive {
+    background-image: url('./../../../../assets/img/report/business-inactive.gif');
+    background-size: cover;
+}
+
+.example-full-width {
+    width: 100%;
+    padding: 2px;
+}

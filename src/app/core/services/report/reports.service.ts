@@ -15,6 +15,27 @@ export class ReportsService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('responseType', 'arrayBuffer');
-    return this.httpClient.get(this.API_URL + '/rptNotasExcel', {responseType: 'arraybuffer'});
+    return this.httpClient.get(this.API_URL + '/rptPersonasActivasExcel', {responseType: 'arraybuffer'});
+  }
+
+  generarReporteEmpleadosSinProyecto(): Observable<any> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('responseType', 'arrayBuffer');
+    return this.httpClient.get(this.API_URL + '/rptEmpleadosSinProyectoExcel', {responseType: 'arraybuffer'});
+  }
+
+  generarReporteEmpleadosInactivos(): Observable<any> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('responseType', 'arrayBuffer');
+    return this.httpClient.get(this.API_URL + '/rptPersonasInactivasExcel', {responseType: 'arraybuffer'});
+  }
+
+  generarReporteClientesInactivos(): Observable<any> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('responseType', 'arrayBuffer');
+    return this.httpClient.get(this.API_URL + '/rptClientesInactivasExcel', {responseType: 'arraybuffer'});
   }
 }

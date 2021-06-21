@@ -38,8 +38,8 @@ export class PersonaService {
     return this.httpClient.post<Persona>(this.API_URL, persona);
   }
 
-  eliminarPersona(idPersona: number): Observable<any> {
-    return this.httpClient.delete(`${this.API_URL}/${idPersona}`);
+  eliminarPersona(idPersona: number, motivo: string): Observable<any> {
+    return this.httpClient.delete(`${this.API_URL}/${idPersona}/motivo/${motivo}`);
   }
 
   consultarCantidadPersonasContratadas(): Observable<EmpleadosContratados[]> {

@@ -55,7 +55,7 @@ export class EditarCrearClienteComponent implements OnInit {
     } else {
       console.log('Se creara una nueva persona');
       this.crear = true;
-      this.titulo = 'Crear Persona';
+      this.titulo = 'Crear Cliente';
 
     }
   }

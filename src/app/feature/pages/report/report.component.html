@@ -1,5 +1,79 @@
-<button type="button" mat-raised-button (click)="generarReporte()" color="warn">Cancelar</button>
-<a href="http://localhost:9003/api/report/rptNotasExcel" target="_blank" mat-button color="primary">
-    <mat-icon fontSet="fas" fontIcon="fa-user-plus"></mat-icon>
-    <span>Registrar Persona</span>
-</a>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-text card-header-warning">
+                        <div class="card-text">
+                            <h4 class="card-title">Reportes</h4>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="example-full-width" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <mat-card class="example-card">
+                                        <mat-card-header>
+                                            <div mat-card-avatar class="header-image-people"></div>
+
+                                            <mat-card-subtitle>Generar reporte de empleados activos en la empresa</mat-card-subtitle>
+                                        </mat-card-header>
+                                        <mat-card-actions align="end">
+                                            <button mat-mini-fab color="primary" (click)="generarReporte()" aria-label="Example icon button with a delete icon">
+                                                <mat-icon>download</mat-icon>
+                                              </button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </td>
+                                <td>
+                                    <mat-card class="example-card">
+                                        <mat-card-header>
+                                            <div mat-card-avatar class="header-image-withoud-project"></div>
+                                            <mat-card-subtitle>Generar reporte de empleados activos sin proyecto asignado</mat-card-subtitle>
+                                        </mat-card-header>
+                                        <mat-card-actions align="end">
+                                            <button mat-mini-fab color="primary" (click)="generarReporterEmpleadosSinProyectoExcel()" aria-label="Example icon button with a delete icon">
+                                                <mat-icon>download</mat-icon>
+                                              </button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </td>
+                            </tr>
+
+                            <br>
+
+                            <tr>
+                                <td>
+                                    <mat-card class="example-card">
+                                        <mat-card-header>
+                                            <div mat-card-avatar class="header-image-user-inactive"></div>
+                                            <mat-card-subtitle>Generar reporte de empleados inactivos</mat-card-subtitle>
+                                        </mat-card-header>
+                                        <mat-card-actions align="end">
+                                            <button mat-mini-fab color="primary" (click)="generarReporterEmpleadosInactivosExcel()" aria-label="Example icon button with a delete icon">
+                                                <mat-icon>download</mat-icon>
+                                              </button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </td>
+                                <td>
+                                    <mat-card class="example-card">
+                                        <mat-card-header>
+                                            <div mat-card-avatar class="header-image-clint-inactive"></div>
+                                            <mat-card-subtitle>Generar reporte de clientes incativos</mat-card-subtitle>
+                                        </mat-card-header>
+                                        <mat-card-actions align="end">
+                                            <button mat-mini-fab color="primary" (click)="generarReporterClientesInactivosExcel()" aria-label="Example icon button with a delete icon">
+                                                <mat-icon>download</mat-icon>
+                                              </button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
